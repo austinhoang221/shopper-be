@@ -6,7 +6,7 @@ public static class ValidationResultExtensions
     {
         return new Dictionary<string, object?>
         {
-            { ProblemDetails.Errors, validationResult.ValidationErrors }
+            { DomainErrors, validationResult.ValidationErrors }
         };
     }
 }

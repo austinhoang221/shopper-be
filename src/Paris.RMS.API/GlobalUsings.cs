@@ -1,6 +1,12 @@
 ﻿global using Asp.Versioning;
+global using Microsoft.AspNetCore.Http.HttpResults;
 global using Microsoft.AspNetCore.Mvc;
 global using NSwag;
 global using NSwag.CodeGeneration.TypeScript;
 global using Paris.RMS.API.Products;
+global using Paris.RMS.Contracts.BuildingBlocks.Responses;
+global using Paris.RMS.Contracts.BuildingBlocks.Results;
 global using Paris.RMS.ServiceDefaults;
+global using static Paris.RMS.Contracts.Constants.Constants.ProblemDetails;
+global using IHttpResult = Microsoft.AspNetCore.Http.IResult;
+global using IResult = Paris.RMS.Contracts.BuildingBlocks.Results.IResult;

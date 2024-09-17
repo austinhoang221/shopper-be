@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Paris.RMS.Persistences\Paris.RMS.Persistences.csproj" />
     <ProjectReference Include="..\Paris.RMS.ServiceDefaults\Paris.RMS.ServiceDefaults.csproj" />
   </ItemGroup>
 

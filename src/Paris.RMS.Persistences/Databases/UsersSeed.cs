@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace Paris.RMS.Persistences.Databases;
+﻿namespace Paris.RMS.Persistences.Databases;
 
 public class UsersSeed(
     ILogger<UsersSeed> logger,
@@ -17,11 +15,11 @@ public class UsersSeed(
             logger.LogDebug("alice already exists");
         }
 
-        alice = ApplicationUser.Create(Guid.NewGuid().ToString(), "XXXXXXXXXXXX1881", "123", "12/24", "Alice Smith",
-                1, "15703 NE 61st Ct", "Redmond", "WA", "U.S.", "98052", "Alice", "Smith", "alice", "AliceSmith@email.com",
-                true, "1234567890");
+        //alice = ApplicationUser.Create(Guid.NewGuid().ToString(), "XXXXXXXXXXXX1881", "123", "12/24", "Alice Smith",
+        //        1, "15703 NE 61st Ct", "Redmond", "WA", "U.S.", "98052", "Alice", "Smith", "alice", "AliceSmith@email.com",
+        //        true, "1234567890");
 
-        var result = userManager.CreateAsync(alice, "Pass123$").Result;
+        var result = userManager.CreateAsync(alice!, "Pass123$").Result;
 
         if (!result.Succeeded)
         {
@@ -41,11 +39,11 @@ public class UsersSeed(
             logger.LogDebug("bob already exists");
         }
 
-        bob = ApplicationUser.Create(Guid.NewGuid().ToString(), "XXXXXXXXXXXX1881", "456", "12/24", "Bob Smith",
-                1, "15703 NE 61st Ct", "Redmond", "WA", "U.S.", "98052", "Bob", "Smith", "bob", "BobSmith@email.com",
-                true, "1234567890");
+        //bob = ApplicationUser.Create(Guid.NewGuid().ToString(), "XXXXXXXXXXXX1881", "456", "12/24", "Bob Smith",
+        //        1, "15703 NE 61st Ct", "Redmond", "WA", "U.S.", "98052", "Bob", "Smith", "bob", "BobSmith@email.com",
+        //        true, "1234567890");
 
-        result = await userManager.CreateAsync(bob, "Pass123$");
+        result = await userManager.CreateAsync(bob!, "Pass123$");
 
         if (!result.Succeeded)
         {
