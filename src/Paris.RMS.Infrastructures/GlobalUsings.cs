@@ -1,0 +1,18 @@
+﻿global using System.Net.Sockets;
+global using System.Security.Claims;
+global using System.Text;
+global using System.Text.Json;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Abstractions;
+global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Events;
+global using Paris.RMS.UseCases.UserServices;
+global using Polly;
+global using Polly.Retry;
+global using RabbitMQ.Client;
+global using RabbitMQ.Client.Events;
+global using RabbitMQ.Client.Exceptions;
+global using static Paris.RMS.Contracts.Utilities.StringUtilities;

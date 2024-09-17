@@ -1,1 +1,14 @@
-﻿
+﻿global using System.Buffers;
+global using System.Reflection;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using System.Text.Json.Serialization.Metadata;
+global using MediatR;
+global using Microsoft.Extensions.DependencyInjection;
+global using Paris.RMS.Contracts.BuildingBlocks.DDD;
+global using Paris.RMS.Contracts.BuildingBlocks.Errors;
+global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Events;
+global using Paris.RMS.Contracts.BuildingBlocks.Responses;
+global using Paris.RMS.Contracts.BuildingBlocks.Results;
+global using Paris.RMS.Contracts.Utilities;
+global using ValidationResult = Paris.RMS.Contracts.BuildingBlocks.Results.ValidationResult;
