@@ -1,0 +1,10 @@
+﻿- Cài đặt và update dotnet ef tool
+	dotnet tool install --global dotnet-ef 
+	or  
+	dotnet tool update --global dotnet-ef
+
+- Tạo db migrations cho db 
+	Add-Migration -Name Inital-Creation -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
+
+- Xóa db migrations cho db 
+	Remove-Migration -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API

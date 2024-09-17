@@ -4,6 +4,9 @@
 var withApiVersioning = builder.Services.AddDefaultVersioning();
 builder.AddDefaultOpenApi(withApiVersioning);
 
+
+builder.Services.RegisterPersistenceLayer(builder.Environment);
+
 var app = builder.Build();
 
 var paymentOrganizations = app.NewVersionedApi("Products");

@@ -2,7 +2,7 @@
 
 internal static class DatabaseExtensions
 {
-    internal static IServiceCollection RegisterDatabaseContext(this IServiceCollection services, bool isDevelopment)
+    internal static IServiceCollection RegisterDatabaseContext(this IServiceCollection services, IHostEnvironment environment)
     {
         services
             .AddOptions<DatabaseOptions>()
@@ -23,8 +23,8 @@ internal static class DatabaseExtensions
             var databaseOptions = services.GetOptions<DatabaseOptions>();
             var connectionStringOptions = services.GetOptions<ConnectionStringOptions>();
 
-            optionsBuilder.UseMySql(connectionStringOptions.AdminParisRmsConnection,
-                ServerVersion.AutoDetect(connectionStringOptions.AdminParisRmsConnection),
+            optionsBuilder.UseMySql(connectionStringOptions.ParisRmsConnection,
+                ServerVersion.AutoDetect(connectionStringOptions.ParisRmsConnection),
                 options =>
                 {
                     options.CommandTimeout(databaseOptions.CommandTimeout);
@@ -32,11 +32,11 @@ internal static class DatabaseExtensions
                     options.EnableRetryOnFailure(
                         databaseOptions.MaxRetryCount,
                         TimeSpan.FromSeconds(databaseOptions.MaxRetryDelay),
-                        Array.Empty<int>());
+                        []);
                 }
             );
 
-            if (isDevelopment)
+            if (environment.IsDevelopment())
             {
                 //optionsBuilder.LogTo(Console.WriteLine, LogLevel.Debug);
                 optionsBuilder.EnableDetailedErrors();
@@ -54,13 +54,17 @@ internal static class DatabaseExtensions
             }
         });
 
-        if (isDevelopment)
+        if (environment.IsDevelopment())
         {
             // Apply database migration automatically. Note that this approach is not
             // recommended for production scenarios. Consider generating SQL scripts from
             // migrations instead.
             services.AddMigration<ParisRmsDbContext, UsersSeed>();
         }
+
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ParisRmsDbContext>()
+            .AddDefaultTokenProviders();
 
         return services;
     }

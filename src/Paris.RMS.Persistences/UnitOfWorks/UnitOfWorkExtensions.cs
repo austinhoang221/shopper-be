@@ -2,7 +2,7 @@
 
 public static class UnitOfWorkExtensions
 {
-    public static IServiceCollection AddUnitOfWorks(this IServiceCollection services)
+    public static IServiceCollection RegisterUnitOfWorks(this IServiceCollection services)
     {
 
         return services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));

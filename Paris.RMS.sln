@@ -20,17 +20,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6004186-4335-4AD6-BDE4-0265BC9C6D3E}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Command.txt = Command.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paris.RMS.Domains", "src\Paris.RMS.Domains\Paris.RMS.Domains.csproj", "{3800B8C0-CDAF-449C-984E-A7B9942C21B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paris.RMS.Domains", "src\Paris.RMS.Domains\Paris.RMS.Domains.csproj", "{3800B8C0-CDAF-449C-984E-A7B9942C21B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paris.RMS.UseCases", "src\Paris.RMS.UseCases\Paris.RMS.UseCases.csproj", "{6C7C6011-E413-4C2E-90AE-4C88D670FAF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paris.RMS.UseCases", "src\Paris.RMS.UseCases\Paris.RMS.UseCases.csproj", "{6C7C6011-E413-4C2E-90AE-4C88D670FAF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paris.RMS.Infrastructures", "src\Paris.RMS.Infrastructures\Paris.RMS.Infrastructures.csproj", "{F3BC7341-7815-4BEB-B36B-7C90357773F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paris.RMS.Infrastructures", "src\Paris.RMS.Infrastructures\Paris.RMS.Infrastructures.csproj", "{F3BC7341-7815-4BEB-B36B-7C90357773F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paris.RMS.Persistences", "src\Paris.RMS.Persistences\Paris.RMS.Persistences.csproj", "{8C476107-2A8D-4ADB-B165-6614B5667036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paris.RMS.Persistences", "src\Paris.RMS.Persistences\Paris.RMS.Persistences.csproj", "{8C476107-2A8D-4ADB-B165-6614B5667036}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paris.RMS.ServiceDefaults", "src\Paris.RMS.ServiceDefaults\Paris.RMS.ServiceDefaults.csproj", "{EE9CCE65-0DE7-4EE9-A6B8-C7731DF84B93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paris.RMS.ServiceDefaults", "src\Paris.RMS.ServiceDefaults\Paris.RMS.ServiceDefaults.csproj", "{EE9CCE65-0DE7-4EE9-A6B8-C7731DF84B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
