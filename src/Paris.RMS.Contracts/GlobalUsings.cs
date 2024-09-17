@@ -5,6 +5,7 @@ global using System.Text.Json.Serialization;
 global using System.Text.Json.Serialization.Metadata;
 global using MediatR;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;
 global using Paris.RMS.Contracts.BuildingBlocks.DDD;
 global using Paris.RMS.Contracts.BuildingBlocks.Errors;
 global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Events;

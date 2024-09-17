@@ -1,7 +1,17 @@
-﻿global using Microsoft.EntityFrameworkCore;
+﻿global using System.Reflection;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.EntityFrameworkCore.Storage;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
 global using Paris.RMS.Contracts.BuildingBlocks.Databases;
+global using Paris.RMS.Contracts.Utilities;
+global using Paris.RMS.Domains.Users;
 global using Paris.RMS.UseCases.UserServices;
 global using static Microsoft.EntityFrameworkCore.EntityState;

@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Paris.RMS.Contracts\Paris.RMS.Contracts.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.8" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Users\" />
+    <ProjectReference Include="..\Paris.RMS.Contracts\Paris.RMS.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
