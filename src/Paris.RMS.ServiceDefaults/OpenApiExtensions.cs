@@ -65,6 +65,13 @@ public static class OpenApiExtensions
             services.AddSwaggerGen(options => options.OperationFilter<OpenApiDefaultValues>());
         }
 
+        //Add MVC Lowercase URL
+        builder.Services.AddRouting(options =>
+        {
+            options.LowercaseUrls = true;
+            options.LowercaseQueryStrings = false;
+        });
+
         return builder;
     }
 }

@@ -4,18 +4,13 @@
 var withApiVersioning = builder.Services.AddDefaultVersioning();
 builder.AddDefaultOpenApi(withApiVersioning);
 
-//Add MVC Lowercase URL
-builder.Services.AddRouting(options =>
-{
-    options.LowercaseUrls = true;
-    options.LowercaseQueryStrings = false;
-});
-
 builder.Services
     .AddMediatR(configuration =>
     {
         configuration.RegisterServicesFromAssembly(typeof(Program).Assembly);
     });
+
+builder.AddDefaultAuthentication();
 
 builder.Services
     .RegisterServices()
@@ -23,13 +18,14 @@ builder.Services
     .RegisterPersistenceLayer(builder.Environment)
     ;
 
-
 var app = builder.Build();
 
-var paymentOrganizations = app.NewVersionedApi("Products");
-paymentOrganizations.MapProductApisV1();
+var products = app.NewVersionedApi("Products");
+products.MapProductApisV1()
+    .RequireAuthorization();
 
 // Configure the HTTP request pipeline.
 app.UseDefaultOpenApi();
+app.UseDefaultAuthentication();
 
 app.Run();

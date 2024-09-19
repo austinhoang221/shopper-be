@@ -1,5 +1,6 @@
 ﻿global using Asp.Versioning;
 global using MediatR;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Http.HttpResults;
 global using Microsoft.AspNetCore.Mvc;
 global using Paris.RMS.API.Abstractions;
