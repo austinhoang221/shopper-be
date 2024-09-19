@@ -18,39 +18,69 @@ internal static class DatabaseExtensions
 
         services.AddSingleton<IValidateOptions<DatabaseOptions>, DatabaseOptionsValidator>();
 
-        services.AddDbContextPool<ParisRmsDbContext>((serviceProvider, optionsBuilder) =>
+        //services.AddDbContextPool<ParisRmsDbContext>((serviceProvider, optionsBuilder) =>
+        //{
+        //    var databaseOptions = services.GetOptions<DatabaseOptions>();
+        //    var connectionStringOptions = services.GetOptions<ConnectionStringOptions>();
+
+        //    optionsBuilder.UseMySql(connectionStringOptions.ParisRmsConnection,
+        //        ServerVersion.AutoDetect(connectionStringOptions.ParisRmsConnection),
+        //        options =>
+        //        {
+        //            options.CommandTimeout(databaseOptions.CommandTimeout);
+
+        //            options.EnableRetryOnFailure(
+        //                databaseOptions.MaxRetryCount,
+        //                TimeSpan.FromSeconds(databaseOptions.MaxRetryDelay),
+        //                []);
+        //        }
+        //    );
+
+        //    if (environment.IsDevelopment())
+        //    {
+        //        //optionsBuilder.LogTo(Console.WriteLine, LogLevel.Debug);
+        //        optionsBuilder.EnableDetailedErrors();
+        //        optionsBuilder.EnableSensitiveDataLogging(); //DO NOT USE THIS IN PRODUCTION! Used to get parameter values. DO NOT USE THIS IN PRODUCTION!
+        //        optionsBuilder.ConfigureWarnings(warningAction =>
+        //        {
+        //            warningAction.Log(new EventId[]
+        //            {
+        //            CoreEventId.FirstWithoutOrderByAndFilterWarning,
+        //            CoreEventId.RowLimitingOperationWithoutOrderByWarning
+        //            });
+        //        });
+
+
+        //    }
+        //});
+
+        services.AddDbContextPool<ParisRmsDbContext>(optionBuilders =>
         {
             var databaseOptions = services.GetOptions<DatabaseOptions>();
             var connectionStringOptions = services.GetOptions<ConnectionStringOptions>();
 
-            optionsBuilder.UseMySql(connectionStringOptions.ParisRmsConnection,
-                ServerVersion.AutoDetect(connectionStringOptions.ParisRmsConnection),
-                options =>
-                {
-                    options.CommandTimeout(databaseOptions.CommandTimeout);
+            optionBuilders.UseSqlServer(connectionStringOptions.ParisRmsConnection, options =>
+            {
+                options.CommandTimeout(databaseOptions.CommandTimeout);
 
-                    options.EnableRetryOnFailure(
-                        databaseOptions.MaxRetryCount,
-                        TimeSpan.FromSeconds(databaseOptions.MaxRetryDelay),
-                        []);
-                }
-            );
+                options.EnableRetryOnFailure(
+                    databaseOptions.MaxRetryCount,
+                    TimeSpan.FromSeconds(databaseOptions.MaxRetryDelay),
+                    []);
+            });
 
             if (environment.IsDevelopment())
             {
-                //optionsBuilder.LogTo(Console.WriteLine, LogLevel.Debug);
-                optionsBuilder.EnableDetailedErrors();
-                optionsBuilder.EnableSensitiveDataLogging(); //DO NOT USE THIS IN PRODUCTION! Used to get parameter values. DO NOT USE THIS IN PRODUCTION!
-                optionsBuilder.ConfigureWarnings(warningAction =>
+                optionBuilders.EnableDetailedErrors();
+                optionBuilders.EnableSensitiveDataLogging(); //DO NOT USE THIS IN PRODUCTION! Used to get parameter values. DO NOT USE THIS IN PRODUCTION!
+                optionBuilders.ConfigureWarnings(warningAction =>
                 {
                     warningAction.Log(new EventId[]
                     {
-                    CoreEventId.FirstWithoutOrderByAndFilterWarning,
-                    CoreEventId.RowLimitingOperationWithoutOrderByWarning
+                        CoreEventId.FirstWithoutOrderByAndFilterWarning,
+                        CoreEventId.RowLimitingOperationWithoutOrderByWarning
                     });
                 });
-
-
             }
         });
 

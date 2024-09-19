@@ -8,3 +8,6 @@
 
 - Xóa db migrations cho db 
 	Remove-Migration -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
+
+- Tạo TypeScript Client
+    nswag openapi2tsclient /input:http://localhost:5283/swagger/v1/swagger.json /output:Client.ts

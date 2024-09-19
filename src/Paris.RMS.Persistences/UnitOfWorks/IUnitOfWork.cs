@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace Paris.RMS.Persistences.UnitOfWorks;
+﻿namespace Paris.RMS.Persistences.UnitOfWorks;
 
 public interface IUnitOfWork
 {

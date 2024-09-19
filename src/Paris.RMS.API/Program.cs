@@ -4,8 +4,25 @@
 var withApiVersioning = builder.Services.AddDefaultVersioning();
 builder.AddDefaultOpenApi(withApiVersioning);
 
+//Add MVC Lowercase URL
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = false;
+});
 
-builder.Services.RegisterPersistenceLayer(builder.Environment);
+builder.Services
+    .AddMediatR(configuration =>
+    {
+        configuration.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    });
+
+builder.Services
+    .RegisterServices()
+    .RegisterValidator()
+    .RegisterPersistenceLayer(builder.Environment)
+    ;
+
 
 var app = builder.Build();
 

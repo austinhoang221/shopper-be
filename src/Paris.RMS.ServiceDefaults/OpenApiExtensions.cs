@@ -24,6 +24,13 @@ public static class OpenApiExtensions
             app.UseSwaggerUi();
         }
 
+        // Add ReDoc UI to interact with the document
+        // Available at: http://localhost:<port>/redoc
+        app.UseReDoc(options =>
+        {
+            options.Path = "/redoc";
+        });
+
         return app;
     }
 

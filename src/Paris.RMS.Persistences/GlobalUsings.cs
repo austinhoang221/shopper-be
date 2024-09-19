@@ -14,6 +14,7 @@ global using Paris.RMS.Contracts.BuildingBlocks.Databases;
 global using Paris.RMS.Contracts.Utilities;
 global using Paris.RMS.Domains.Users;
 global using Paris.RMS.Persistences.Databases;
+global using Paris.RMS.Persistences.Repositories;
 global using Paris.RMS.Persistences.UnitOfWorks;
 global using Paris.RMS.UseCases.UserServices;
 global using static Microsoft.EntityFrameworkCore.EntityState;

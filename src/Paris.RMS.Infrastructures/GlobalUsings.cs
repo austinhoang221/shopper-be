@@ -1,4 +1,5 @@
-﻿global using System.Net.Sockets;
+﻿global using System.IdentityModel.Tokens.Jwt;
+global using System.Net.Sockets;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.Json;
@@ -7,8 +8,11 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
+global using Microsoft.IdentityModel.Tokens;
 global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Abstractions;
 global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Events;
+global using Paris.RMS.Domains.Users;
+global using Paris.RMS.Infrastructures.Services.JwtTokens;
 global using Paris.RMS.UseCases.UserServices;
 global using Polly;
 global using Polly.Retry;

@@ -1,17 +1,11 @@
-﻿namespace Paris.RMS.API;
+﻿namespace Paris.RMS.API.Abstractions;
 
 public static class HttpResultExtensions
 {
-    public static async Task<IResult> CallHandler<TIn>(this IResult<TIn> result, Func<TIn, Task<IResult>> func) =>
-        result.IsSuccess ? await func(result.Value) : Result.Failure(result.Error);
-
-    public static async Task<IResult<TResponse>> CallHandler<TIn, TResponse>(this IResult<TIn> result, Func<TIn, Task<IResult<TResponse>>> func) =>
-        result.IsSuccess ? await func(result.Value) : Result.Failure<TResponse>(result.Error);
-
     public static async Task<IHttpResult> HandleCreated<TResponse>(this Task<IResult<TResponse>> resultTask, string routeName)
         where TResponse : IResponse
     {
-        IResult<TResponse> result = await resultTask;
+        var result = await resultTask;
 
         return result.IsSuccess ? result.ToCreated(routeName) : result.ToBadRequest();
     }
@@ -19,7 +13,7 @@ public static class HttpResultExtensions
     public static async Task<IHttpResult> HandleGet<TResponse>(this Task<IResult<TResponse>> resultTask)
         where TResponse : IResponse
     {
-        IResult<TResponse> result = await resultTask;
+        var result = await resultTask;
 
         return result.IsSuccess ? result.ToOk() : result.ToNotFound();
     }
@@ -27,7 +21,7 @@ public static class HttpResultExtensions
     public static async Task<IHttpResult> HandleNotCreated<TResponse>(this Task<IResult<TResponse>> resultTask)
         where TResponse : IResponse
     {
-        IResult<TResponse> result = await resultTask;
+        var result = await resultTask;
 
         return result.IsSuccess ? result.ToOk() : result.ToBadRequest();
     }

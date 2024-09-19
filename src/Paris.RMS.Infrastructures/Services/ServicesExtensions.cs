@@ -2,10 +2,14 @@
 
 public static class ServicesExtensions
 {
-    internal static IServiceCollection RegisterServices(this IServiceCollection services)
+    public static IServiceCollection RegisterServices(this IServiceCollection services)
     {
         //Services
         services.AddScoped<IUserContextService, UserContextService>();
+
+        // JWT Token
+        services.ConfigureOptions<AuthenticationOptionsSetup>();
+        services.ConfigureOptions<BearerAuthenticationOptionsSetup>();
         return services;
     }
 }
