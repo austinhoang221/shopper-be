@@ -23,4 +23,7 @@ public class ApplicationUser : IdentityUser
 
     public static ApplicationUser Create(string username, string name, string lastName, string email, string phoneNumber)
         => new(username, name, lastName, email, phoneNumber);
+
+    public static ApplicationUser Create(string email)
+        => new(string.Empty, string.Empty, string.Empty, email, string.Empty);
 }

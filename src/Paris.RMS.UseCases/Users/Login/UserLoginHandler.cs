@@ -1,5 +1,4 @@
-﻿using Paris.RMS.Domains.Users.Errors;
-using Paris.RMS.UseCases.UserServices;
+﻿using static Paris.RMS.Domains.Users.Errors.DomainErrors.User;
 
 namespace Paris.RMS.UseCases.Users.Login;
 
@@ -15,7 +14,7 @@ internal sealed class UserLoginHandler(
         ApplicationUser? user = await userManager.FindByNameAsync(request.Username);
 
         validator
-            .If(user is null, UserError.InvalidEmail);
+            .If(user is null, InvalidEmail);
 
         if (validator.IsInvalid)
         {
@@ -26,7 +25,7 @@ internal sealed class UserLoginHandler(
             .CheckPasswordSignInAsync(user!, request.Password, false);
 
         validator
-            .If(!result.Succeeded, UserError.InvalidPassword);
+            .If(!result.Succeeded, InvalidPassword);
 
         if (validator.IsInvalid)
         {

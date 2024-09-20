@@ -1,5 +1,6 @@
 ﻿namespace Paris.RMS.API.Abstractions;
 
+[Authorize]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 [Produces("application/json")]
@@ -10,7 +11,6 @@ public abstract class ApiController(IMediator mediator) : ControllerBase
     protected IActionResult Ok<TResponse>(IResult<TResponse> result)
         where TResponse : IResponse
         => base.Ok(result.Value);
-
 
     protected IActionResult NotFound(IResult result)
     {
@@ -80,5 +80,4 @@ public abstract class ApiController(IMediator mediator) : ControllerBase
             result.Value
         );
     }
-
 }

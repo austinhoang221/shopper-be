@@ -96,6 +96,8 @@ internal static class DatabaseExtensions
             .AddEntityFrameworkStores<ParisRmsDbContext>()
             .AddDefaultTokenProviders();
 
+        services.AddScoped<IDbContext, ParisRmsDbContext>();
+
         return services;
     }
 }
