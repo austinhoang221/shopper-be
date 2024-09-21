@@ -4,7 +4,6 @@ using Paris.RMS.UseCases.Users.Register;
 
 namespace Paris.RMS.API.Users;
 
-[AllowAnonymous]
 [ApiVersion("1.0")]
 public class UsersController(IMediator mediator) : ApiController(mediator)
 {
@@ -13,12 +12,14 @@ public class UsersController(IMediator mediator) : ApiController(mediator)
     /// </summary>
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns>The token of the user</returns>
+    /// <returns>The access token of the user</returns>
     /// <remarks>
     /// 
     /// </remarks>
-    /// <response code="200">Returns the token</response>
-    /// <response code="400">Return the list of errors</response>
+    /// <response code="200">Returns the access token</response>
+    /// <response code="400">Return the <see cref="ProblemDetails"/> object contains the list of errors</response>
+    /// 
+    [AllowAnonymous]
     [HttpPost("[action]")]
     [ProducesResponseType<UserLoginResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
@@ -27,6 +28,19 @@ public class UsersController(IMediator mediator) : ApiController(mediator)
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(Ok, BadRequest);
 
+    /// <summary>
+    /// The user register to the new account
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>The access token of the user</returns>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <response code="201">Return the access token</response>
+    /// <response code="400">Return the <see cref="ProblemDetails"/> object contains the list of errors</response>
+    /// 
+    [AllowAnonymous]
     [HttpPost("[action]")]
     [ProducesResponseType<UserRegisterResponse>(StatusCodes.Status201Created)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
@@ -34,5 +48,4 @@ public class UsersController(IMediator mediator) : ApiController(mediator)
         => await Result.Success(new UserRegisterCommand(request.Email, request.Password, request.ConfirmPassword))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(CreatedAtAction, BadRequest, nameof(Register));
-
 }

@@ -1,7 +1,7 @@
 ﻿namespace Paris.RMS.Persistences.Repositories;
 
 internal abstract class RepositoryBase<TEntity>(IDbContext context)
-    where TEntity : class, EntityBase
+    where TEntity : EntityBase
 {
     public async Task<TEntity?> FindAsync(string id)
         => await context.FindAsync<TEntity>(id);

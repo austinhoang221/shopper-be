@@ -9,8 +9,3 @@ public interface IResponse<TIdentity>
 {
     TIdentity Id { get; }
 }
-
-public interface ICreatedResponse : IResponse<string>
-{
-    public string? ActioName { get; }
-}
