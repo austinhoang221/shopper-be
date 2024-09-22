@@ -1,6 +1,6 @@
 ﻿namespace Paris.RMS.Contracts.BuildingBlocks.Databases;
 
-public class EntityBase : IEntityBase, IPrimaryKey<string>
+public class EntityBase : IEntityBase
 {
     public string Id { get; set; } = Ulid.NewUlid().ToString();
 

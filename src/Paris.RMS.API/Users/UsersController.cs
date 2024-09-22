@@ -1,4 +1,5 @@
 ﻿using Paris.RMS.API.Users.ViewModels.V1;
+using Paris.RMS.UseCases.Users.Get;
 using Paris.RMS.UseCases.Users.Login;
 using Paris.RMS.UseCases.Users.Register;
 
@@ -47,5 +48,13 @@ public class UsersController(IMediator mediator) : ApiController(mediator)
     public async Task<IActionResult> Register([FromBody] UserRegisterRequest request, CancellationToken cancellationToken)
         => await Result.Success(new UserRegisterCommand(request.Email, request.Password, request.ConfirmPassword))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
-        .Match(CreatedAtAction, BadRequest, nameof(Register));
+        .Match(CreatedAtAction, BadRequest, nameof(Get));
+
+    [HttpGet("{id}")]
+    [ProducesResponseType<GetUserResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
+        => await Result.Success(new GetUserQuery(id))
+        .CallHandler(query => Mediator.Send(query, cancellationToken))
+        .Match(Ok, BadRequest);
 }

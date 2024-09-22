@@ -48,19 +48,19 @@ public sealed class UnitOfWork(IUserContextService userContext, ParisRmsDbContex
         {
             if (entityEntry.State is Added)
             {
-                entityEntry.Property(a => a.CreationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.CreationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
                 entityEntry.Property(a => a.CreatorUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Modified)
             {
-                entityEntry.Property(a => a.LastModificationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.LastModificationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
                 entityEntry.Property(a => a.LastModificationUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Deleted)
             {
-                entityEntry.Property(a => a.DeletionTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.DeletionTime).CurrentValue = SystemDateTimeOffset.UtcNow;
                 entityEntry.Property(a => a.DeletionUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
             }
         }
@@ -78,12 +78,12 @@ public sealed class UnitOfWork(IUserContextService userContext, ParisRmsDbContex
         {
             if (entityEntry.State is Added)
             {
-                entityEntry.Property(a => a.CreationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.CreationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
             }
 
             if (entityEntry.State is Modified)
             {
-                entityEntry.Property(a => a.LastModificationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.LastModificationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
             }
         }
     }
@@ -137,19 +137,19 @@ public sealed class UnitOfWork<TContext>
         {
             if (entityEntry.State is Added)
             {
-                entityEntry.Property(a => a.CreationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.CreationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
                 entityEntry.Property(a => a.CreatorUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Modified)
             {
-                entityEntry.Property(a => a.LastModificationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.LastModificationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
                 entityEntry.Property(a => a.LastModificationUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Deleted)
             {
-                entityEntry.Property(a => a.DeletionTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.DeletionTime).CurrentValue = SystemDateTimeOffset.UtcNow;
                 entityEntry.Property(a => a.DeletionUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
             }
         }
@@ -167,12 +167,12 @@ public sealed class UnitOfWork<TContext>
         {
             if (entityEntry.State is Added)
             {
-                entityEntry.Property(a => a.CreationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.CreationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
             }
 
             if (entityEntry.State is Modified)
             {
-                entityEntry.Property(a => a.LastModificationTime).CurrentValue = DateTimeOffset.UtcNow;
+                entityEntry.Property(a => a.LastModificationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
             }
         }
     }

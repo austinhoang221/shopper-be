@@ -3,11 +3,20 @@
 	or  
 	dotnet tool update --global dotnet-ef
 
-- Tạo db migrations cho db 
+- Tạo migrations 
 	Add-Migration -Name Inital-Creation -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
+    Add-Migration -Name Inital-System-Tbl -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
 
-- Xóa db migrations cho db 
+- Xóa migrations
 	Remove-Migration -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
+
+- Update migrations to database 
+	Update-Database -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
+
+- Xóa database
+	Drop-Database -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
 
 - Tạo TypeScript Client
     nswag openapi2tsclient /input:http://localhost:5283/swagger/v1/swagger.json /output:Client.ts
+    or
+    nswag run nswag.json

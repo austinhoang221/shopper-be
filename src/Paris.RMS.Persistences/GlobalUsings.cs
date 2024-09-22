@@ -18,3 +18,6 @@ global using Paris.RMS.Persistences.Repositories;
 global using Paris.RMS.Persistences.UnitOfWorks;
 global using Paris.RMS.UseCases.UserServices;
 global using static Microsoft.EntityFrameworkCore.EntityState;
+global using Paris.RMS.Domains.Systems;
+global using static Paris.RMS.Persistences.Configurations.ConfigurationConstants;
+global using SystemDateTimeOffset = System.DateTimeOffset;

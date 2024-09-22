@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Paris.RMS.Persistences.Databases;
 
@@ -11,9 +12,11 @@ using Paris.RMS.Persistences.Databases;
 namespace Paris.RMS.Persistences.Databases.Migrations
 {
     [DbContext(typeof(ParisRmsDbContext))]
-    partial class ParisRmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240922030809_Inital-System-Tbl")]
+    partial class InitalSystemTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

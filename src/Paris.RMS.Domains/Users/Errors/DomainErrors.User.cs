@@ -15,5 +15,8 @@ public static partial class DomainErrors
         /// </summary>
         public static readonly Error InvalidPassword =
             Error.New($"{nameof(ApplicationUser)}.{nameof(InvalidPassword)}", $"Invalid password.");
+
+        public static Error NotFound(string id)
+            => Error.New($"{typeof(ApplicationUser).Name}.{nameof(NotFound)}", $"{typeof(ApplicationUser).Name} with id '{id}' was not found.");
     }
 }
