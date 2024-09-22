@@ -3,7 +3,7 @@ using static Paris.RMS.Domains.Users.Errors.DomainErrors.Password;
 
 namespace Paris.RMS.UseCases.Users.Register;
 
-internal sealed class UserRegisterHandler(
+public sealed class UserRegisterHandler(
     UserManager<ApplicationUser> userManager,
     IJwtTokenProvider tokenProvider,
     ILogger<UserRegisterHandler> logger,

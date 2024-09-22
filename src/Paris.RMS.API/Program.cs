@@ -1,31 +1,28 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 // Add services to the container.
 var withApiVersioning = builder.Services.AddDefaultVersioning();
 builder.AddDefaultSwashbuckle(withApiVersioning);
-
-builder.Services
-    .AddMediatR(configuration =>
-    {
-        configuration.RegisterServicesFromAssembly(typeof(Program).Assembly);
-    });
 
 builder.AddDefaultAuthentication();
 
 builder.Services
     .RegisterServices()
     .RegisterValidator()
+    .RegisterUseCasesLayer()
     .RegisterPersistenceLayer(builder.Environment)
     ;
 
 var app = builder.Build();
 
-var products = app.NewVersionedApi("Products");
-products.MapProductApisV1()
-    .RequireAuthorization();
-
 // Configure the HTTP request pipeline.
-app.UseDefaultAuthentication();
+
 app.UseDefaultSwashbuckle();
+
+app.UseDefaultAuthentication();
+
+app.MapControllers();
 
 app.Run();

@@ -20,3 +20,9 @@
     nswag openapi2tsclient /input:http://localhost:5283/swagger/v1/swagger.json /output:Client.ts
     or
     nswag run nswag.json
+
+- Đẩy commit lên https://github.com/tuan-binh-ntd/Paris-RMS.git
+    git push origin branch-name --> VD: git push origin main
+
+- Đẩy commit lên https://github.com/austinhoang221/shopper-be.git
+    git push origin branch-name --> VD: git push secord main

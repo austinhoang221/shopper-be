@@ -1,7 +1,4 @@
-﻿using MediatR;
-using Paris.RMS.Contracts.BuildingBlocks.Responses;
-
-namespace Paris.RMS.Contracts.BuildingBlocks.CQRS;
+﻿namespace Paris.RMS.Contracts.BuildingBlocks.CQRS;
 
 /// <summary>
 /// Represents the command interface

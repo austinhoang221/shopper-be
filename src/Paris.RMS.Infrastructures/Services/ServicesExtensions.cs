@@ -6,6 +6,7 @@ public static class ServicesExtensions
     {
         //Services
         services.AddScoped<IUserContextService, UserContextService>();
+        services.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
 
         // JWT Token
         services.ConfigureOptions<AuthenticationOptionsSetup>();

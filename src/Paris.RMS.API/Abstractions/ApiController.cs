@@ -1,6 +1,6 @@
 ﻿namespace Paris.RMS.API.Abstractions;
 
-[Authorize]
+[Authorize(AuthenticationSchemes = "Bearer")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 [Produces("application/json")]

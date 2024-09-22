@@ -2,7 +2,7 @@
 
 namespace Paris.RMS.UseCases.Users.Login;
 
-internal sealed class UserLoginHandler(
+public sealed class UserLoginHandler(
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager,
     IJwtTokenProvider tokenProvider,

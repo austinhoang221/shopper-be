@@ -17,3 +17,4 @@ global using static Paris.RMS.API.Abstractions.ProblemDetailsUtilities;
 global using static Paris.RMS.Contracts.Constants.Constants.ProblemDetails;
 global using IHttpResult = Microsoft.AspNetCore.Http.IResult;
 global using IResult = Paris.RMS.Contracts.BuildingBlocks.Results.IResult;
+global using Paris.RMS.UseCases;

@@ -2,7 +2,7 @@
 
 namespace Paris.RMS.UseCases.Users.Get;
 
-internal sealed class GetUserHandler(
+public sealed class GetUserHandler(
     UserManager<ApplicationUser> userManager,
     IValidator validator)
     : IQueryHandler<GetUserQuery, GetUserResponse>
@@ -19,6 +19,6 @@ internal sealed class GetUserHandler(
             return validator.Failure<GetUserResponse>();
         }
 
-        return Result.Success( new GetUserResponse(user!.Id, user!.Email!));
+        return Result.Success(new GetUserResponse(user!.Id, user!.Email!));
     }
 }

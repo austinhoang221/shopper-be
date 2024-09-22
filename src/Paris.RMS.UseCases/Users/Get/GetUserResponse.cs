@@ -1,5 +1,4 @@
-﻿using System;
-namespace Paris.RMS.UseCases.Users.Get;
+﻿namespace Paris.RMS.UseCases.Users.Get;
 
 public sealed class GetUserResponse(string id, string email)
     : IResponse

@@ -1,6 +1,15 @@
 @Paris.RMS.API_HostAddress = http://localhost:5283
+@version:apiVersion = 1
 
 GET {{Paris.RMS.API_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+GET {{Paris.RMS.API_HostAddress}}/api/v{version:apiVersion}/users/01J8C31GF1EN0CGP8X67GJ5RSH
+
+###
+
+GET {{Paris.RMS.API_HostAddress}}/api/v1/users/01J8C31GF1EN0CGP8X67GJ5RSH
 
 ###

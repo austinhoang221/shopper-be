@@ -22,7 +22,7 @@ public static class OpenApiUtilities
             Scheme = Bearer
         });
 
-        options.ConfigureRequirement(Bearer);
+        //options.ConfigureRequirement(Bearer);
     }
 
     public static void AddApiKeyAuthorization(this SwaggerGenOptions options)

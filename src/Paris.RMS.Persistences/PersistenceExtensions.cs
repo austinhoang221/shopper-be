@@ -1,6 +1,4 @@
-﻿using Paris.RMS.Persistences.Repositories;
-
-namespace Paris.RMS.Persistences;
+﻿namespace Paris.RMS.Persistences;
 
 public static class PersistenceExtensions
 {
