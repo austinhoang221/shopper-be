@@ -1,4 +1,6 @@
-﻿namespace Paris.RMS.ServiceDefaults;
+﻿using Swashbuckle.AspNetCore.Filters;
+
+namespace Paris.RMS.ServiceDefaults;
 
 public static class OpenApiExtensions
 {
@@ -14,14 +16,17 @@ public static class OpenApiExtensions
 
         if (app.Environment.IsDevelopment())
         {
-            // Add OpenAPI 3.0 document serving middleware
-            // Available at: http://localhost:<port>/swagger/v1/swagger.json
-            app.UseOpenApi();
+            //// Add OpenAPI 3.0 document serving middleware
+            //// Available at: http://localhost:<port>/swagger/v1/swagger.json
+            //app.UseOpenApi();
 
-            // Add web UIs to interact with the document
-            // Available at: http://localhost:<port>/swagger
-            // UseSwaggerUi Protected by if (env.IsDevelopment())
-            app.UseSwaggerUi();
+            //// Add web UIs to interact with the document
+            //// Available at: http://localhost:<port>/swagger
+            //// UseSwaggerUi Protected by if (env.IsDevelopment())
+            //app.UseSwaggerUi();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         // Add ReDoc UI to interact with the document
@@ -48,7 +53,7 @@ public static class OpenApiExtensions
         }
 
         // Learn more about configuring Swagger/OpenAPI at https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-nswag
-        builder.Services.AddOpenApiDocument();
+        services.AddOpenApiDocument();
         services.AddEndpointsApiExplorer();
 
         if (apiVersioning is not null)
@@ -62,11 +67,18 @@ public static class OpenApiExtensions
             });
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen(options => options.OperationFilter<OpenApiDefaultValues>());
+            services.AddSwaggerGen(options =>
+            {
+                options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
+                //options.AddApiKeyAuthorization();
+                options.AddJwtAuthorization();
+                options.OperationFilter<OpenApiDefaultValues>();
+            });
         }
 
         //Add MVC Lowercase URL
-        builder.Services.AddRouting(options =>
+        services.AddRouting(options =>
         {
             options.LowercaseUrls = true;
             options.LowercaseQueryStrings = false;

@@ -1,4 +1,6 @@
-﻿namespace Paris.RMS.ServiceDefaults;
+﻿using Swashbuckle.AspNetCore.Filters;
+
+namespace Paris.RMS.ServiceDefaults;
 
 public static class SwashbuckleExtensions
 {
@@ -14,6 +16,7 @@ public static class SwashbuckleExtensions
 
         if (app.Environment.IsDevelopment())
         {
+
             app.UseSwagger();
             app.UseSwaggerUI();
         }
@@ -36,15 +39,26 @@ public static class SwashbuckleExtensions
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
 
         if (apiVersioning is not null)
         {
             // the default format will just be ApiVersion.ToString(); for example, 1.0.
             // this will format the version as "'v'major[.minor][-status]"
-            apiVersioning.AddApiExplorer(options => options.GroupNameFormat = "'v'VVV");
+            apiVersioning.AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen(options => options.OperationFilter<OpenApiDefaultValues>());
+            services.AddSwaggerGen(options =>
+            {
+                options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
+                //options.AddApiKeyAuthorization();
+                options.AddJwtAuthorization();
+                options.OperationFilter<OpenApiDefaultValues>();
+            });
         }
 
         return builder;

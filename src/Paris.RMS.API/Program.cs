@@ -2,7 +2,7 @@
 
 // Add services to the container.
 var withApiVersioning = builder.Services.AddDefaultVersioning();
-builder.AddDefaultOpenApi(withApiVersioning);
+builder.AddDefaultSwashbuckle(withApiVersioning);
 
 builder.Services
     .AddMediatR(configuration =>
@@ -25,7 +25,7 @@ products.MapProductApisV1()
     .RequireAuthorization();
 
 // Configure the HTTP request pipeline.
-app.UseDefaultOpenApi();
 app.UseDefaultAuthentication();
+app.UseDefaultSwashbuckle();
 
 app.Run();
