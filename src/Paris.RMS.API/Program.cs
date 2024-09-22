@@ -4,9 +4,10 @@ builder.Services.AddControllers();
 
 // Add services to the container.
 var withApiVersioning = builder.Services.AddDefaultVersioning();
-builder.AddDefaultSwashbuckle(withApiVersioning);
 
 builder.AddDefaultAuthentication();
+
+builder.AddDefaultSwashbuckle(withApiVersioning);
 
 builder.Services
     .RegisterServices()
