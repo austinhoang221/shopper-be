@@ -61,6 +61,13 @@ public static class SwashbuckleExtensions
             });
         }
 
+        //Add MVC Lowercase URL
+        services.AddRouting(options =>
+        {
+            options.LowercaseUrls = true;
+            options.LowercaseQueryStrings = false;
+        });
+
         return builder;
     }
 }
