@@ -14,4 +14,14 @@
     <ProjectReference Include="..\Paris.RMS.Domains\Paris.RMS.Domains.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ProductCategorys\Get\" />
+    <Folder Include="Products\Get\" />
+    <Folder Include="ProductTags\Create\" />
+    <Folder Include="ProductTags\Delete\" />
+    <Folder Include="ProductTags\Get\" />
+    <Folder Include="ProductTags\List\" />
+    <Folder Include="ProductTags\Update\" />
+  </ItemGroup>
+
 </Project>

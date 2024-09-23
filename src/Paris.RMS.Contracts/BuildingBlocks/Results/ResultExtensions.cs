@@ -51,4 +51,14 @@ public static class ResultExtensions
 
         return result.IsSuccess ? onSuccess(result, actionName) : onFailure(result);
     }
+
+    public static async Task<TActionResult> Match<TResponse, TActionResult>(
+        this Task<IResult<TResponse>> resultTask,
+        Func<IResult, TActionResult> onSuccess,
+        Func<IResult, TActionResult> onFailure)
+    {
+        IResult<TResponse> result = await resultTask;
+
+        return result.IsSuccess ? onSuccess(result) : onFailure(result);
+    }
 }

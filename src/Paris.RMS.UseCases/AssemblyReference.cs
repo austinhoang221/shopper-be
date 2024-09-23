@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Paris.RMS.UseCases;
+﻿namespace Paris.RMS.UseCases;
 
 public static class AssemblyReference
 {

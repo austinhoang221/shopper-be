@@ -3,8 +3,16 @@
 internal abstract class RepositoryBase<TEntity>(IDbContext context)
     where TEntity : EntityBase
 {
+    protected DbSet<TEntity> Entity => context.Set<TEntity>();
+
     public async Task<TEntity?> FindAsync(string id)
         => await context.FindAsync<TEntity>(id);
+
+    public async Task<IReadOnlyCollection<TEntity>> List()
+        => await context.List<TEntity>();
+
+    public async Task<bool> IsExist(string id)
+        => await context.IsExist<TEntity>(id);
 
     public void Delete(TEntity entity)
         => context.Delete(entity);

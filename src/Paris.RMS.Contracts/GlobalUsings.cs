@@ -1,4 +1,5 @@
 ﻿global using System.Buffers;
+global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Reflection;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;

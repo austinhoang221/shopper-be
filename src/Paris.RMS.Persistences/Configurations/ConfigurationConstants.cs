@@ -15,4 +15,5 @@ public static class ConfigurationConstants
     public static string Char(int lenght) => $"{nameof(Char)}({lenght})";
     public static string Binary(int lenght) => $"{nameof(Binary)}({lenght})";
     public static string UnsignedTinyInt(int length) => $"TINYINT({length}) UNSIGNED";
+    public static string Decimal(int precision, int scale) => $"{nameof(Decimal)}({precision},{scale})";
 }

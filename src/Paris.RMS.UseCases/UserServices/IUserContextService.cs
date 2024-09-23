@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-
-namespace Paris.RMS.UseCases.UserServices;
+﻿namespace Paris.RMS.UseCases.UserServices;
 
 public interface IUserContextService
 {

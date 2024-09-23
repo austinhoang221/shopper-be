@@ -1,6 +1,4 @@
-﻿using static Paris.RMS.Domains.Users.Errors.DomainErrors.User;
-
-namespace Paris.RMS.UseCases.Users.Get;
+﻿namespace Paris.RMS.UseCases.Users.Get;
 
 public sealed class GetUserHandler(
     UserManager<ApplicationUser> userManager,
@@ -12,7 +10,7 @@ public sealed class GetUserHandler(
         var user = await userManager.FindByIdAsync(request.Id);
 
         validator
-            .If(user is null, NotFound(request.Id));
+            .If(user is null, NotFound(request.Id, nameof(ApplicationUser)));
 
         if (validator.IsInvalid)
         {

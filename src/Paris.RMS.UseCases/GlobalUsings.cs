@@ -1,9 +1,14 @@
-﻿global using Microsoft.AspNetCore.Identity;
+﻿global using System.Reflection;
+global using System.Security.Claims;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
 global using Paris.RMS.Contracts.BuildingBlocks.CQRS;
 global using Paris.RMS.Contracts.BuildingBlocks.Errors;
 global using Paris.RMS.Contracts.BuildingBlocks.Responses;
 global using Paris.RMS.Contracts.BuildingBlocks.Results;
 global using Paris.RMS.Contracts.BuildingBlocks.Validators;
+global using Paris.RMS.Domains.Products;
 global using Paris.RMS.Domains.Users;
 global using Paris.RMS.UseCases.UserServices;
+global using static Paris.RMS.Contracts.BuildingBlocks.Errors.Error;

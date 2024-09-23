@@ -46,6 +46,8 @@ public static class ConfigurationExtensions
         builder.Property(o => o.Id)
             .HasColumnType(VarChar(DefaultIdLength));
 
+        builder.HasKey(o => o.Id);
+
         builder.Property(o => o.CreationTime)
             .HasColumnType(TimeStamp(2));
 

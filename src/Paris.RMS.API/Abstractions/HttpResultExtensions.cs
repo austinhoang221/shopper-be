@@ -27,7 +27,6 @@ public static class HttpResultExtensions
     }
 
     public static ProblemHttpResult ToBadRequest<TResponse>(this IResult<TResponse> result)
-    where TResponse : IResponse
     {
         return result switch
         {
@@ -57,7 +56,6 @@ public static class HttpResultExtensions
     }
 
     public static ProblemHttpResult ToNotFound<TResponse>(this IResult<TResponse> result)
-        where TResponse : IResponse
     {
         return result switch
         {

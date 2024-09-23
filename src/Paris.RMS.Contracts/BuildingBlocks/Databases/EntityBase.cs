@@ -1,6 +1,6 @@
 ﻿namespace Paris.RMS.Contracts.BuildingBlocks.Databases;
 
-public class EntityBase : IEntityBase
+public abstract class EntityBase : HasDomainEventsBase, IEntityBase
 {
     public string Id { get; set; } = Ulid.NewUlid().ToString();
 

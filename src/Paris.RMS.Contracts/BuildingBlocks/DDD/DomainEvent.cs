@@ -5,11 +5,11 @@
 /// Event names should be in the past.
 /// </summary>
 /// <param name="Id">DomainEvent id</param>
-public abstract class DomainEvent(Ulid Id, DateTimeOffset OccurredTime) : IDomainEvent
+public abstract class DomainEvent : IDomainEvent
 {
-    public Ulid Id { get; init; } = Id;
+    public Ulid Id { get; init; } = Ulid.NewUlid();
 
-    public DateTimeOffset OccurredTime { get; set; } = OccurredTime;
+    public DateTimeOffset OccurredTime { get; set; } = DateTimeOffset.UtcNow;
 }
 
 //We rise the domain event by the AggregateRoot, for instance after something has succeeded.

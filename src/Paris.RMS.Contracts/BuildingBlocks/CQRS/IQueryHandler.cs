@@ -10,3 +10,14 @@ public interface IQueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, IRes
     where TResponse : IResponse
 {
 }
+
+/// <summary>
+/// Represents the query handler interface
+/// </summary>
+/// <typeparam name="TQuery">The query type</typeparam>
+/// <typeparam name="TResponse">The query response type</typeparam>
+public interface IListQueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, IResult<IReadOnlyCollection<TResponse>>>
+    where TQuery : IListQuery<TResponse>
+    where TResponse : IResponse
+{
+}

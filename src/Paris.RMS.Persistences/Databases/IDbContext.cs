@@ -8,6 +8,12 @@ public interface IDbContext
     Task<TEntity?> FindAsync<TEntity>(string id)
         where TEntity : EntityBase;
 
+    Task<IReadOnlyCollection<TEntity>> List<TEntity>()
+        where TEntity : EntityBase;
+
+    Task<bool> IsExist<TEntity>(string id)
+        where TEntity : EntityBase;
+
     void Insert<TEntity>(TEntity entity)
         where TEntity : EntityBase;
 
