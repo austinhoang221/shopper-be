@@ -26,3 +26,6 @@
 
 - Đẩy commit lên https://github.com/austinhoang221/shopper-be.git
     git push origin branch-name --> VD: git push secord main
+
+- Nên tạo alias
+    git config --global alias.pushboth '!git push origin && git push second'
