@@ -6,6 +6,7 @@ internal static class PipelineExtensions
     {
         services.AddMediatR(configuration =>
         {
+            configuration.RegisterServicesFromAssembly(UseCases.AssemblyReference.Assembly);
             configuration.AddOpenBehavior(typeof(CommandTransactionPipeline<,>));
             configuration.AddOpenBehavior(typeof(CommandWithResponseTransactionPipeline<,>));
         });

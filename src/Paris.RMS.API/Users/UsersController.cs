@@ -27,7 +27,7 @@ public class UsersController(IMediator mediator) : ApiController(mediator)
     public async Task<IActionResult> Login([FromBody] UserLoginRequest request, CancellationToken cancellationToken)
         => await Result.Success(new UserLoginCommand(request.Username, request.Password))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
-        .Match(Ok, BadRequest);
+        .Match(OK, BadRequest);
 
     /// <summary>
     /// The user register to the new account
@@ -56,5 +56,5 @@ public class UsersController(IMediator mediator) : ApiController(mediator)
     public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
         => await Result.Success(new GetUserQuery(id))
         .CallHandler(query => Mediator.Send(query, cancellationToken))
-        .Match(Ok, BadRequest);
+        .Match(OK, BadRequest);
 }

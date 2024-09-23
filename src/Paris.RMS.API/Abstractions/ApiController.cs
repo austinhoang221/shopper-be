@@ -8,7 +8,7 @@ public abstract class ApiController(IMediator mediator) : ControllerBase
 {
     protected readonly IMediator Mediator = mediator;
 
-    protected IActionResult Ok<TResponse>(IResult<TResponse> result)
+    protected IActionResult OK<TResponse>(IResult<TResponse> result)
         where TResponse : IResponse
         => base.Ok(result.Value);
 

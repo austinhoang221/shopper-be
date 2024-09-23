@@ -21,8 +21,7 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     [ProducesResponseType<CreateProductResponse>(StatusCodes.Status201Created)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
-        => await Result.Success(new CreateProductCommand(request.CategoryId, request.CostPrice, request.Name,
-            request.ProductCd, request.SellingPrice, request.Stock, request.SupplierId, request.TxDesc, request.Unit, request.Weight))
+        => await Result.Success(request.ToCommand())
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(CreatedAtAction, BadRequest, "Get");
 
@@ -30,16 +29,15 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     [ProducesResponseType<UpdateProductResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Update(string id, [FromBody] UpdateProductRequest request, CancellationToken cancellationToken)
-        => await Result.Success(new UpdateProductCommand(id, request.CategoryId, request.CostPrice, request.Name,
-            request.ProductCd, request.SellingPrice, request.Stock, request.SupplierId, request.TxDesc, request.Unit, request.Weight))
+        => await Result.Success(request.ToCommand())
         .CallHandler(command => Mediator.Send(command))
-        .Match(Ok, BadRequest);
+        .Match(OK, BadRequest);
 
     [HttpDelete("{id}")]
     [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
         => await Result.Success(new DeleteProductCommand(id))
-        .CallHandler(command => Mediator.Send(command))
+        .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(Ok, BadRequest);
 }

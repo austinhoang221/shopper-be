@@ -1,4 +1,7 @@
-﻿namespace Paris.RMS.API.Products.ViewModels.V1;
+﻿using Azure.Core;
+using Paris.RMS.UseCases.Products.Create;
+
+namespace Paris.RMS.API.Products.ViewModels.V1;
 
 public sealed class CreateProductRequest(string categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
@@ -15,4 +18,8 @@ public sealed class CreateProductRequest(string categoryId, decimal costPrice,
     public string TxDesc { get; } = txDesc;
     public string Unit { get; } = unit;
     public decimal Weight { get; } = weight;
+
+    public CreateProductCommand ToCommand()
+    => new(CategoryId, CostPrice, Name, ProductCd,
+        SellingPrice, Stock, SupplierId, TxDesc, Unit, Weight);
 }

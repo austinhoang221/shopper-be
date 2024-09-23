@@ -13,3 +13,13 @@ GET {{Paris.RMS.API_HostAddress}}/api/v{version:apiVersion}/users/01J8C31GF1EN0C
 GET {{Paris.RMS.API_HostAddress}}/api/v1/users/01J8C31GF1EN0CGP8X67GJ5RSH
 
 ###
+
+POST {{Paris.RMS.API_HostAddress}}/api/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Pass123$"
+}
+
+###

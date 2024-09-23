@@ -1,4 +1,6 @@
-﻿namespace Paris.RMS.API.Products.ViewModels.V1;
+﻿using Paris.RMS.UseCases.Products.Update;
+
+namespace Paris.RMS.API.Products.ViewModels.V1;
 
 public sealed class UpdateProductRequest(string id, string categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
@@ -16,4 +18,8 @@ public sealed class UpdateProductRequest(string id, string categoryId, decimal c
     public string TxDesc { get; } = txDesc;
     public string Unit { get; } = unit;
     public decimal Weight { get; } = weight;
+
+    public UpdateProductCommand ToCommand()
+    => new(Id, CategoryId, CostPrice, Name, ProductCd,
+        SellingPrice, Stock, SupplierId, TxDesc, Unit, Weight);
 }

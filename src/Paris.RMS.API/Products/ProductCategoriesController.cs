@@ -32,7 +32,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     public async Task<IActionResult> Update(string id, [FromBody] UpdateProductCategoryRequest request, CancellationToken cancellationToken)
         => await Result.Success(new UpdateProductCategoryCommand(id, request.Name, request.ParentId))
         .CallHandler(command => Mediator.Send(command))
-        .Match(Ok, BadRequest);
+        .Match(OK, BadRequest);
 
     [HttpDelete("{id}")]
     [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
