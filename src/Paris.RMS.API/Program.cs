@@ -14,6 +14,7 @@ builder.Services
     .RegisterValidator()
     .RegisterUseCasesLayer()
     .RegisterPersistenceLayer(builder.Environment)
+    .AddCors()
     ;
 
 var app = builder.Build();
@@ -25,5 +26,7 @@ app.UseDefaultSwashbuckle();
 app.UseDefaultAuthentication();
 
 app.MapControllers();
+
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000"));
 
 app.Run();
