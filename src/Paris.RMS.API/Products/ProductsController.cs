@@ -29,7 +29,7 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     [ProducesResponseType<UpdateProductResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Update(string id, [FromBody] UpdateProductRequest request, CancellationToken cancellationToken)
-        => await Result.Success(request.ToCommand())
+        => await Result.Success(request.ToCommand(id))
         .CallHandler(command => Mediator.Send(command))
         .Match(OK, BadRequest);
 
