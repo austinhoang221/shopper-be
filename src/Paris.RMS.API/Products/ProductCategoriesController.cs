@@ -31,14 +31,14 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Update(string id, [FromBody] UpdateProductCategoryRequest request, CancellationToken cancellationToken)
         => await Result.Success(new UpdateProductCategoryCommand(id, request.Name, request.ParentId))
-        .CallHandler(command => Mediator.Send(command))
+        .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(OK, BadRequest);
 
     [HttpDelete("{id}")]
-    [ProducesResponseType<DeleteProductCategoryResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<NoContent>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
         => await Result.Success(new DeleteProductCategoryCommand(id))
-        .CallHandler(command => Mediator.Send(command))
-        .Match(OK, BadRequest);
+        .CallHandler(command => Mediator.Send(command, cancellationToken))
+        .Match(NoContent, BadRequest);
 }

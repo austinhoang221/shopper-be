@@ -12,6 +12,8 @@ public abstract class ApiController(IMediator mediator) : ControllerBase
         where TResponse : IResponse
         => base.Ok(result.Value);
 
+    protected IActionResult NoContent(IResult result)
+        => result.IsSuccess ? base.NoContent() : BadRequest(result);
 
     protected IActionResult OK<TResponse>(IResult<IReadOnlyCollection<TResponse>> result)
         where TResponse : IResponse
