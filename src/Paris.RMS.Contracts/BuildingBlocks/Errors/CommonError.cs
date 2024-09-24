@@ -13,12 +13,6 @@ public sealed partial class Error
         return New($"{entityName}.{nameof(NotFound)}", $"{entityName} with id '{id}' was not found.");
     }
 
-    //public static Error NotFound<TEntity>(string uniqueValue)
-    //    where TEntity : EntityBase
-    //{
-    //    return New($"{typeof(TEntity).Name}.{nameof(NotFound)}", $"{typeof(TEntity).Name} for '{uniqueValue}' was not found.");
-    //}
-
     public static Error NotFound(string subjectToFind, string uniqueValue, string additionalMessage)
     {
         return New($"{subjectToFind}.{nameof(NotFound)}", $"{subjectToFind} for '{uniqueValue}' was not found. {additionalMessage}");

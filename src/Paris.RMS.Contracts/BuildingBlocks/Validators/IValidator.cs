@@ -7,6 +7,9 @@ public interface IValidator
 
     IValidator If(bool condition, Error thenError);
 
+    IValidator IfNull<TObject>(TObject? instance, Error thenError)
+        where TObject : class, IEntityBase;
+
     IValidator Validate<TValueObject>(Result<TValueObject> result)
         where TValueObject : ValueObject;
 

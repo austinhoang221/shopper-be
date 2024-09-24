@@ -16,6 +16,17 @@ public sealed class Validator : IValidator
         return this;
     }
 
+    public IValidator IfNull<TObject>(TObject? instance, Error thenError)
+        where TObject : class, IEntityBase
+    {
+        if (instance is null)
+        {
+            _errors.Add(thenError);
+        }
+
+        return this;
+    }
+
     public IValidator Validate<TValueObject>(Result<TValueObject> result)
         where TValueObject : ValueObject
     {
