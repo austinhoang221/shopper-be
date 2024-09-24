@@ -4,7 +4,7 @@ internal sealed class ProductTagConfiguration : IEntityTypeConfiguration<Product
 {
     public void Configure(EntityTypeBuilder<ProductTag> builder)
     {
-        builder.ConfigureEntityBase();
+        builder.ConfigureEntityBase(false);
 
         builder.Property(pt => pt.ProductId)
             .HasMaxLength(DefaultIdLength)

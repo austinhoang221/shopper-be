@@ -18,7 +18,7 @@ public static class ConfigurationExtensions
         if (useUpdatedOnAsConcurrencyToken)
         {
             builder.Property(o => o.LastModificationTime)
-                .HasColumnType(TimeStamp(7))
+                .HasColumnType(TimeStamp(6))
                 .IsConcurrencyToken(true)
                 .IsRequired(false);
 
@@ -54,7 +54,7 @@ public static class ConfigurationExtensions
         if (useUpdatedOnAsConcurrencyToken)
         {
             builder.Property(o => o.LastModificationTime)
-                .HasColumnType(TimeStamp(7))
+                .HasColumnType(TimeStamp(6))
                 .IsConcurrencyToken(true)
                 .IsRequired(false);
 

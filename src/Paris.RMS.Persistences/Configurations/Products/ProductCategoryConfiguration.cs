@@ -5,7 +5,7 @@ internal sealed class ProductCategoryConfiguration : IEntityTypeConfiguration<Pr
 {
     public void Configure(EntityTypeBuilder<ProductCategory> builder)
     {
-        builder.ConfigureEntityBase();
+        builder.ConfigureEntityBase(false);
 
         builder.Property(pc => pc.Name)
             .HasMaxLength(DefaultVarCharLength)
