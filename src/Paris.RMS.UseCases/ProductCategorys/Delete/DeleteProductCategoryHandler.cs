@@ -4,9 +4,9 @@ namespace Paris.RMS.UseCases.ProductCategorys.Delete;
 public sealed class DeleteProductCategoryHandler(
     IProductCategoryRepository productCategoryRepository,
     IValidator validator)
-    : ICommandHandler<DeleteProductCategoryCommand>
+    : ICommandHandler<DeleteProductCategoryCommand, DeleteProductCategoryResponse>
 {
-    public async Task<IResult> Handle(DeleteProductCategoryCommand request, CancellationToken cancellationToken)
+    public async Task<IResult<DeleteProductCategoryResponse>> Handle(DeleteProductCategoryCommand request, CancellationToken cancellationToken)
     {
         bool isExist = await productCategoryRepository.IsExist(request.Id);
 
@@ -16,11 +16,11 @@ public sealed class DeleteProductCategoryHandler(
         if (validator.IsInvalid)
 
         {
-            return validator.Failure();
+            return validator.Failure<DeleteProductCategoryResponse>();
         }
 
         await productCategoryRepository.DeleteAsync(request.Id);
 
-        return Result.Success();
+        return Result.Success(new DeleteProductCategoryResponse(request.Id));
     }
 }

@@ -3,9 +3,9 @@
 public sealed class DeleteProductHandler(
     IProductRepository productRepository,
     IValidator validator)
-    : ICommandHandler<DeleteProductCommand>
+    : ICommandHandler<DeleteProductCommand, DeleteProductResponse>
 {
-    public async Task<IResult> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+    public async Task<IResult<DeleteProductResponse>> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
         bool isExist = await productRepository.IsExist(request.Id);
 
@@ -14,9 +14,9 @@ public sealed class DeleteProductHandler(
 
         if (validator.IsInvalid)
         {
-            return validator.Failure();
+            return validator.Failure<DeleteProductResponse>();
         }
 
-        return Result.Success();
+        return Result.Success(new DeleteProductResponse(request.Id));
     }
 }

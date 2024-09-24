@@ -12,6 +12,11 @@ public abstract class ApiController(IMediator mediator) : ControllerBase
         where TResponse : IResponse
         => base.Ok(result.Value);
 
+
+    protected IActionResult OK<TResponse>(IResult<IReadOnlyCollection<TResponse>> result)
+        where TResponse : IResponse
+        => base.Ok(result.Value);
+
     protected IActionResult NotFound(IResult result)
     {
         return result switch

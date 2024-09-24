@@ -16,7 +16,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     public async Task<IActionResult> List(CancellationToken cancellationToken)
         => await Result.Success(new ListProductCategoryQuery())
         .CallHandler(query => Mediator.Send(query, cancellationToken))
-        .Match(Ok, BadRequest);
+        .Match(OK, BadRequest);
 
     [HttpPost]
     [ProducesResponseType<CreateProductCategoryResponse>(StatusCodes.Status201Created)]
@@ -35,10 +35,10 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
         .Match(OK, BadRequest);
 
     [HttpDelete("{id}")]
-    [ProducesResponseType<IActionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<DeleteProductCategoryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
         => await Result.Success(new DeleteProductCategoryCommand(id))
         .CallHandler(command => Mediator.Send(command))
-        .Match(Ok, BadRequest);
+        .Match(OK, BadRequest);
 }
