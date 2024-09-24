@@ -1,7 +1,4 @@
-﻿
-using Swashbuckle.AspNetCore.Annotations;
-
-namespace Paris.RMS.API.Abstractions;
+﻿namespace Paris.RMS.API.Abstractions;
 
 public static class MinimalAttributeExtensions
 {

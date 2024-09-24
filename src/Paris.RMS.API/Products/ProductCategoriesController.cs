@@ -8,7 +8,7 @@ using Paris.RMS.UseCases.ProductCategorys.Update;
 namespace Paris.RMS.API.Products;
 
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/product category-categories")]
+[Route("api/v{version:apiVersion}/product-categories")]
 public class ProductCategoriesController(IMediator mediator) : ApiController(mediator)
 {
     /// <summary>
