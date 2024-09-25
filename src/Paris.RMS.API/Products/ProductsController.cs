@@ -22,7 +22,7 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     /// <response code="400">Return the <see cref="ProblemDetails"/> object contains the list of errors</response>
     /// 
     [HttpGet]
-    [ProducesResponseType<IReadOnlyCollection<ListProductQuery>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<IReadOnlyCollection<ListProductResponse>>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> List(CancellationToken cancellationToken)
         => await Result.Success(new ListProductQuery())
