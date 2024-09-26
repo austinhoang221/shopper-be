@@ -9,6 +9,7 @@ internal static class PipelineExtensions
             configuration.RegisterServicesFromAssembly(UseCases.AssemblyReference.Assembly);
             configuration.AddOpenBehavior(typeof(CommandTransactionPipeline<,>));
             configuration.AddOpenBehavior(typeof(CommandWithResponseTransactionPipeline<,>));
+            //configuration.AddOpenBehavior(typeof(QueryTransactionPipeline<,>));
         });
 
         return services;

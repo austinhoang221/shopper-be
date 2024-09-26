@@ -9,7 +9,7 @@
 //So this removes the responsibility of SavingChanges from the repositories and moves it to the UnitOfWork
 //b) since we use IUnitOfWork interface we can provide a mock for this interface
 //3. Move the logic from the interceptors to the UnitOfWork
-public sealed class UnitOfWork(IUserContextService userContext, ParisRmsDbContext context) : IUnitOfWork
+public sealed class UnitOfWork(IUserContextService userContext, IDbContext context) : IUnitOfWork
 {
     private const string DefaultUsername = "Unknown";
     private readonly IUserContextService _userContext = userContext;
@@ -17,34 +17,34 @@ public sealed class UnitOfWork(IUserContextService userContext, ParisRmsDbContex
     public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
     {
         return context
-            .Database
             .BeginTransactionAsync(cancellationToken);
     }
 
     public IExecutionStrategy CreateExecutionStrategy()
     {
         return context
-            .Database
             .CreateExecutionStrategy();
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken)
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
     {
         UpdateAuditableEntitiesBase();
         UpdateEntitiesBase();
 
-        return context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
+
+    public ChangeTracker ChangeTracker => context.ChangeTracker;
 
     private void UpdateAuditableEntitiesBase()
     {
-        IEnumerable<EntityEntry<IAuditEntityBase>> entries =
+        IEnumerable<EntityEntry<AuditEntityBase>> entries =
             context
                 .ChangeTracker
-                .Entries<IAuditEntityBase>()
+                .Entries<AuditEntityBase>()
                 .Where(entry => entry.State is Added or Modified or Deleted);
 
-        foreach (EntityEntry<IAuditEntityBase> entityEntry in entries)
+        foreach (EntityEntry<AuditEntityBase> entityEntry in entries)
         {
             if (entityEntry.State is Added)
             {
@@ -68,13 +68,14 @@ public sealed class UnitOfWork(IUserContextService userContext, ParisRmsDbContex
 
     private void UpdateEntitiesBase()
     {
-        IEnumerable<EntityEntry<IEntityBase>> entries =
+        IEnumerable<EntityEntry<EntityBase>> entries =
             context
                 .ChangeTracker
-                .Entries<IEntityBase>()
-                .Where(entry => entry.State is Added or Modified or Deleted);
+                .Entries<EntityBase>()
+                //.Where(entry => entry.State is Added or Modified)
+                ;
 
-        foreach (EntityEntry<IEntityBase> entityEntry in entries)
+        foreach (EntityEntry<EntityBase> entityEntry in entries)
         {
             if (entityEntry.State is Added)
             {
@@ -91,49 +92,51 @@ public sealed class UnitOfWork(IUserContextService userContext, ParisRmsDbContex
 
 public sealed class UnitOfWork<TContext>
 (
-    TContext dbContext,
+    IDbContext dbContext,
     IUserContextService userContext
 )
     : IUnitOfWork<TContext>
-        where TContext : DbContext
+    where TContext : IDbContext
 {
     private const string DefaultUsername = "Unknown";
-    private readonly TContext _dbContext = dbContext;
+    private readonly IDbContext _dbContext = dbContext;
     private readonly IUserContextService _userContext = userContext;
 
-    public TContext Context => _dbContext;
+    public IDbContext Context => _dbContext;
+
+    public ChangeTracker ChangeTracker => _dbContext.ChangeTracker;
+
+    TContext IUnitOfWork<TContext>.Context => throw new NotImplementedException();
 
     public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
     {
         return Context
-            .Database
             .BeginTransactionAsync(cancellationToken);
     }
 
     public IExecutionStrategy CreateExecutionStrategy()
     {
         return Context
-            .Database
             .CreateExecutionStrategy();
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken)
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
     {
         UpdateAuditableEntitiesBase();
         UpdateEntitiesBase();
 
-        return _dbContext.SaveChangesAsync(cancellationToken);
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
     private void UpdateAuditableEntitiesBase()
     {
-        IEnumerable<EntityEntry<IAuditEntityBase>> entries =
+        IEnumerable<EntityEntry<AuditEntityBase>> entries =
             _dbContext
                 .ChangeTracker
-                .Entries<IAuditEntityBase>()
+                .Entries<AuditEntityBase>()
                 .Where(entry => entry.State is Added or Modified or Deleted);
 
-        foreach (EntityEntry<IAuditEntityBase> entityEntry in entries)
+        foreach (EntityEntry<AuditEntityBase> entityEntry in entries)
         {
             if (entityEntry.State is Added)
             {
@@ -157,13 +160,13 @@ public sealed class UnitOfWork<TContext>
 
     private void UpdateEntitiesBase()
     {
-        IEnumerable<EntityEntry<IEntityBase>> entries =
+        IEnumerable<EntityEntry<EntityBase>> entries =
             _dbContext
                 .ChangeTracker
-                .Entries<IEntityBase>()
+                .Entries<EntityBase>()
                 .Where(entry => entry.State is Added or Modified or Deleted);
 
-        foreach (EntityEntry<IEntityBase> entityEntry in entries)
+        foreach (EntityEntry<EntityBase> entityEntry in entries)
         {
             if (entityEntry.State is Added)
             {

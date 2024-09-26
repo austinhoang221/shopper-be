@@ -1,6 +1,4 @@
-﻿using Paris.RMS.Persistences.Pipelines;
-
-namespace Paris.RMS.Persistences;
+﻿namespace Paris.RMS.Persistences;
 
 public static class PersistenceExtensions
 {
@@ -10,8 +8,8 @@ public static class PersistenceExtensions
         services
             .RegisterDatabaseContext(environment)
             .RegisterUnitOfWorks()
-            .RegisterRepository()
             .RegisterPipelines()
+            .RegisterRepository()
             ;
 
         return services;

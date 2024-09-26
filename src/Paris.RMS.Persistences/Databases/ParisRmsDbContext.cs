@@ -10,13 +10,25 @@ public sealed class ParisRmsDbContext(
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
+    public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
+    {
+        return Database
+            .BeginTransactionAsync(cancellationToken);
+    }
+
+    public IExecutionStrategy CreateExecutionStrategy()
+    {
+        return Database
+            .CreateExecutionStrategy();
+    }
+
     public new DbSet<TEntity> Set<TEntity>()
         where TEntity : EntityBase
         => base.Set<TEntity>();
 
     public async Task<TEntity?> FindAsync<TEntity>(string id)
         where TEntity : EntityBase
-        => await Set<TEntity>().FindAsync(new { Id = id });
+        => await Set<TEntity>().Where(e => e.Id == id).SingleOrDefaultAsync();
 
     public async Task<IReadOnlyCollection<TEntity>> List<TEntity>()
         where TEntity : EntityBase
@@ -28,7 +40,7 @@ public sealed class ParisRmsDbContext(
 
     public void Insert<TEntity>(TEntity entity)
         where TEntity : EntityBase
-        => Set<TEntity>().Add(entity);
+        => Set<TEntity>().Entry(entity).State = Added;
 
     public void InsertRange<TEntity>(IReadOnlyCollection<TEntity> entities)
         where TEntity : EntityBase
@@ -45,4 +57,9 @@ public sealed class ParisRmsDbContext(
         => await Set<TEntity>()
         .Where(e => e.Id == id)
         .ExecuteDeleteAsync();
+
+    public new async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await base.SaveChangesAsync(cancellationToken);
+    }
 }

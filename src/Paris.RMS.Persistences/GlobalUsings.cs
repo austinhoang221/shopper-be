@@ -26,5 +26,6 @@ global using Paris.RMS.Persistences.Repositories.Products;
 global using Paris.RMS.Persistences.UnitOfWorks;
 global using Paris.RMS.UseCases.UserServices;
 global using static Microsoft.EntityFrameworkCore.EntityState;
+global using static Microsoft.EntityFrameworkCore.QueryTrackingBehavior;
 global using static Paris.RMS.Persistences.Configurations.ConfigurationConstants;
 global using SystemDateTimeOffset = System.DateTimeOffset;

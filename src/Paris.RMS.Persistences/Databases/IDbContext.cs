@@ -29,4 +29,11 @@ public interface IDbContext
     Task DeleteAsync<TEntity>(string id)
         where TEntity : EntityBase;
 
+    Task SaveChangesAsync(CancellationToken cancellationToken);
+
+    Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
+
+    IExecutionStrategy CreateExecutionStrategy();
+
+    ChangeTracker ChangeTracker { get; }
 }
