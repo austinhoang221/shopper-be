@@ -20,6 +20,11 @@
     <Folder Include="ProductTags\Get\" />
     <Folder Include="ProductTags\List\" />
     <Folder Include="ProductTags\Update\" />
+    <Folder Include="Systems\AllCode\" />
+    <Folder Include="Systems\CmdMenu\" />
+    <Folder Include="Systems\Filter\" />
+    <Folder Include="Systems\I18n\" />
+    <Folder Include="Systems\SysVar\" />
   </ItemGroup>
 
 </Project>

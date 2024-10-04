@@ -10,9 +10,9 @@ public sealed class ParisRmsDbContext(
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
-    public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
+    public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
     {
-        return Database
+        return await Database
             .BeginTransactionAsync(cancellationToken);
     }
 
@@ -40,7 +40,7 @@ public sealed class ParisRmsDbContext(
 
     public void Insert<TEntity>(TEntity entity)
         where TEntity : EntityBase
-        => Set<TEntity>().Entry(entity).State = Added;
+        => Set<TEntity>().Add(entity);
 
     public void InsertRange<TEntity>(IReadOnlyCollection<TEntity> entities)
         where TEntity : EntityBase
