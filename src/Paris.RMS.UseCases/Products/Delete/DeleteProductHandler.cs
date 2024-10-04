@@ -10,7 +10,7 @@ public sealed class DeleteProductHandler(
         bool isExist = await productRepository.IsExist(request.Id);
 
         validator
-            .If(isExist, NotFound<Product>(request.Id));
+            .If(!isExist, NotFound<Product>(request.Id));
 
         if (validator.IsInvalid)
         {

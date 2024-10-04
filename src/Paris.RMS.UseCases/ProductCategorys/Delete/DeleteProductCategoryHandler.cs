@@ -11,7 +11,7 @@ public sealed class DeleteProductCategoryHandler(
         bool isExist = await productCategoryRepository.IsExist(request.Id);
 
         validator
-            .If(isExist, NotFound<ProductCategory>(request.Id));
+            .If(!isExist, NotFound<ProductCategory>(request.Id));
 
         if (validator.IsInvalid)
 

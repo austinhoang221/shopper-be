@@ -18,6 +18,6 @@ public sealed class GetProductCategoryHandler(
             return validator.Failure<GetProductCategoryResponse>();
         }
 
-        return Result.Success(new GetProductCategoryResponse(productCategory.Id, productCategory.Name, productCategory.ParentId));
+        return Result.Success(new GetProductCategoryResponse(productCategory!.Id, productCategory.Name, productCategory.ParentId));
     }
 }

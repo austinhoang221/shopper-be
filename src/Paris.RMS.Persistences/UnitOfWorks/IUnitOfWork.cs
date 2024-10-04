@@ -5,7 +5,6 @@ public interface IUnitOfWork
     Task SaveChangesAsync(CancellationToken cancellationToken);
     Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
     IExecutionStrategy CreateExecutionStrategy();
-
     ChangeTracker ChangeTracker { get; }
 }
 

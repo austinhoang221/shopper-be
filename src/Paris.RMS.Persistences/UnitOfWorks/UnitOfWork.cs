@@ -9,10 +9,10 @@
 //So this removes the responsibility of SavingChanges from the repositories and moves it to the UnitOfWork
 //b) since we use IUnitOfWork interface we can provide a mock for this interface
 //3. Move the logic from the interceptors to the UnitOfWork
-public sealed class UnitOfWork(IUserContextService userContext, IDbContext context) : IUnitOfWork
+public sealed class UnitOfWork(IUserContextService userContext, IDbContext context)
+    : IUnitOfWork
 {
     private const string DefaultUsername = "Unknown";
-    private readonly IUserContextService _userContext = userContext;
 
     public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
     {
@@ -49,19 +49,19 @@ public sealed class UnitOfWork(IUserContextService userContext, IDbContext conte
             if (entityEntry.State is Added)
             {
                 entityEntry.Property(a => a.CreationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
-                entityEntry.Property(a => a.CreatorUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
+                entityEntry.Property(a => a.CreatorUserId).CurrentValue = userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Modified)
             {
                 entityEntry.Property(a => a.LastModificationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
-                entityEntry.Property(a => a.LastModificationUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
+                entityEntry.Property(a => a.LastModificationUserId).CurrentValue = userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Deleted)
             {
                 entityEntry.Property(a => a.DeletionTime).CurrentValue = SystemDateTimeOffset.UtcNow;
-                entityEntry.Property(a => a.DeletionUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
+                entityEntry.Property(a => a.DeletionUserId).CurrentValue = userContext.UserId ?? DefaultUsername;
             }
         }
     }
@@ -72,7 +72,7 @@ public sealed class UnitOfWork(IUserContextService userContext, IDbContext conte
             context
                 .ChangeTracker
                 .Entries<EntityBase>()
-                //.Where(entry => entry.State is Added or Modified)
+                .Where(entry => entry.State is Added or Modified)
                 ;
 
         foreach (EntityEntry<EntityBase> entityEntry in entries)
@@ -99,12 +99,10 @@ public sealed class UnitOfWork<TContext>
     where TContext : IDbContext
 {
     private const string DefaultUsername = "Unknown";
-    private readonly IDbContext _dbContext = dbContext;
-    private readonly IUserContextService _userContext = userContext;
 
-    public IDbContext Context => _dbContext;
+    public IDbContext Context => dbContext;
 
-    public ChangeTracker ChangeTracker => _dbContext.ChangeTracker;
+    public ChangeTracker ChangeTracker => dbContext.ChangeTracker;
 
     TContext IUnitOfWork<TContext>.Context => throw new NotImplementedException();
 
@@ -125,13 +123,13 @@ public sealed class UnitOfWork<TContext>
         UpdateAuditableEntitiesBase();
         UpdateEntitiesBase();
 
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await dbContext.SaveChangesAsync(cancellationToken);
     }
 
     private void UpdateAuditableEntitiesBase()
     {
         IEnumerable<EntityEntry<AuditEntityBase>> entries =
-            _dbContext
+            dbContext
                 .ChangeTracker
                 .Entries<AuditEntityBase>()
                 .Where(entry => entry.State is Added or Modified or Deleted);
@@ -141,19 +139,19 @@ public sealed class UnitOfWork<TContext>
             if (entityEntry.State is Added)
             {
                 entityEntry.Property(a => a.CreationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
-                entityEntry.Property(a => a.CreatorUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
+                entityEntry.Property(a => a.CreatorUserId).CurrentValue = userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Modified)
             {
                 entityEntry.Property(a => a.LastModificationTime).CurrentValue = SystemDateTimeOffset.UtcNow;
-                entityEntry.Property(a => a.LastModificationUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
+                entityEntry.Property(a => a.LastModificationUserId).CurrentValue = userContext.UserId ?? DefaultUsername;
             }
 
             if (entityEntry.State is Deleted)
             {
                 entityEntry.Property(a => a.DeletionTime).CurrentValue = SystemDateTimeOffset.UtcNow;
-                entityEntry.Property(a => a.DeletionUserId).CurrentValue = _userContext.UserId ?? DefaultUsername;
+                entityEntry.Property(a => a.DeletionUserId).CurrentValue = userContext.UserId ?? DefaultUsername;
             }
         }
     }
@@ -161,10 +159,10 @@ public sealed class UnitOfWork<TContext>
     private void UpdateEntitiesBase()
     {
         IEnumerable<EntityEntry<EntityBase>> entries =
-            _dbContext
+            dbContext
                 .ChangeTracker
                 .Entries<EntityBase>()
-                .Where(entry => entry.State is Added or Modified or Deleted);
+                .Where(entry => entry.State is Added or Modified);
 
         foreach (EntityEntry<EntityBase> entityEntry in entries)
         {
