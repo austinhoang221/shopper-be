@@ -78,7 +78,7 @@ public abstract class ApiController(IMediator mediator) : ControllerBase
     }
 
     protected IActionResult CreatedAtAction<TResponse>(IResult<TResponse> result, string? actionName)
-        where TResponse : IResponse
+        where TResponse : ICreatedResponse
     {
         return base.CreatedAtAction
         (

@@ -1,15 +1,15 @@
 ﻿namespace Paris.RMS.Contracts.BuildingBlocks.Responses;
 
-public interface IResponse : IResponse<string>
+public interface IResponse
 {
 
 }
-public interface IResponse<TIdentity>
+public interface ICreatedResponse<TIdentity>
 {
     TIdentity Id { get; }
 }
 
-public interface ICreatedResponse : IResponse<string>
+public interface ICreatedResponse : ICreatedResponse<string>, IResponse
 {
 
 }

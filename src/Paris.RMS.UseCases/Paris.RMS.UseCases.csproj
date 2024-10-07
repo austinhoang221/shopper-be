@@ -20,11 +20,14 @@
     <Folder Include="ProductTags\Get\" />
     <Folder Include="ProductTags\List\" />
     <Folder Include="ProductTags\Update\" />
-    <Folder Include="Systems\AllCode\" />
-    <Folder Include="Systems\CmdMenu\" />
-    <Folder Include="Systems\Filter\" />
-    <Folder Include="Systems\I18n\" />
-    <Folder Include="Systems\SysVar\" />
+    <Folder Include="Systems\AllCodes\Delete\" />
+    <Folder Include="Systems\AllCodes\Get\" />
+    <Folder Include="Systems\AllCodes\List\" />
+    <Folder Include="Systems\AllCodes\Update\" />
+    <Folder Include="Systems\CmdMenus\" />
+    <Folder Include="Systems\Filters\" />
+    <Folder Include="Systems\I18ns\" />
+    <Folder Include="Systems\SysVars\" />
   </ItemGroup>
 
 </Project>

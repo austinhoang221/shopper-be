@@ -17,6 +17,8 @@ public sealed class DeleteProductHandler(
             return validator.Failure();
         }
 
+        await productRepository.DeleteAsync(request.Id);
+
         return Result.Success();
     }
 }
