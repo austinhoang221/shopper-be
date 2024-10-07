@@ -1,10 +1,10 @@
 ﻿namespace Paris.RMS.Persistences.Pipelines;
 
 public sealed class CommandWithResponseTransactionPipeline<TCommandRequest, TCommandResponse>(IUnitOfWork unitOfWork)
-: CommandTransactionPipelineBase<TCommandResponse>(unitOfWork),
+    : CommandTransactionPipelineBase<TCommandResponse>(unitOfWork),
     IPipelineBehavior<TCommandRequest, TCommandResponse>
-where TCommandRequest : class, IRequest<TCommandResponse>
-where TCommandResponse : class, IResult<IResponse>
+    where TCommandRequest : class, IRequest<TCommandResponse>
+    where TCommandResponse : class, IResult<IResponse>
 {
     public async Task<TCommandResponse> Handle(TCommandRequest command, RequestHandlerDelegate<TCommandResponse> next, CancellationToken cancellationToken)
     {

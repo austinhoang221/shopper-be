@@ -4,7 +4,7 @@ public sealed class CreateProductResponse(string id, string categoryId, decimal 
         string name, string productCd, decimal sellingPrice,
         int stock, string supplierId, string txDesc, string unit,
         decimal weight)
-    : IResponse
+    : ICreatedResponse
 {
     public string Id { get; } = id;
     public string CategoryId { get; } = categoryId;

@@ -3,7 +3,7 @@
 public static class HttpResultExtensions
 {
     public static async Task<IHttpResult> HandleCreated<TResponse>(this Task<IResult<TResponse>> resultTask, string routeName)
-        where TResponse : IResponse
+        where TResponse : ICreatedResponse
     {
         var result = await resultTask;
 
@@ -79,7 +79,7 @@ public static class HttpResultExtensions
     }
 
     public static Created<TResponse> ToCreated<TResponse>(this IResult<TResponse> result, string? routeName = null)
-        where TResponse : IResponse
+        where TResponse : ICreatedResponse
     {
         return TypedResults.Created($"{routeName}/{result.Value.Id}", result.Value);
     }
