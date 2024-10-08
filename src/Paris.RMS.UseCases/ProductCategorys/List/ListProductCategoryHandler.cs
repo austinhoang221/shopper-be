@@ -1,5 +1,4 @@
-﻿
-namespace Paris.RMS.UseCases.ProductCategorys.List;
+﻿namespace Paris.RMS.UseCases.ProductCategorys.List;
 
 public sealed class ListProductCategoryHandler(
     IProductCategoryRepository productCategoryRepository
@@ -10,6 +9,6 @@ public sealed class ListProductCategoryHandler(
     {
         var productCategories = await productCategoryRepository.List();
 
-        return Result.Success(productCategories.Select(pc => new ListProductCategoryResponse(pc.Id, pc.Name, pc.ParentId)).ToList());
+        return Result.Success(productCategories.Select(pc => new ListProductCategoryResponse(pc.Id, pc.Name, pc.ParentId, pc.Icon, pc.Visible)).ToList());
     }
 }

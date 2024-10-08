@@ -5,12 +5,13 @@ internal sealed class CreateProductCategoryHandler(IProductCategoryRepository pr
 {
     public async Task<IResult<CreateProductCategoryResponse>> Handle(CreateProductCategoryCommand request, CancellationToken cancellationToken)
     {
-        var productCategory = ProductCategory.Create(request.Name, request.ParentId);
+        var productCategory = ProductCategory.Create(request.Name, request.ParentId, request.Icon);
 
         productCategoryRepository.Insert(productCategory);
 
         await Task.CompletedTask;
 
-        return Result.Success(new CreateProductCategoryResponse(productCategory.Id, productCategory.Name, productCategory.ParentId)); ;
+        return Result.Success(new CreateProductCategoryResponse(productCategory.Id, productCategory.Name,
+            productCategory.ParentId, productCategory.Icon, productCategory.Visible)); ;
     }
 }

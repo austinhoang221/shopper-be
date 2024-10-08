@@ -1,5 +1,4 @@
-﻿
-namespace Paris.RMS.UseCases.ProductCategorys.Get;
+﻿namespace Paris.RMS.UseCases.ProductCategorys.Get;
 
 public sealed class GetProductCategoryHandler(
     IProductCategoryRepository productCategoryRepository,
@@ -18,6 +17,7 @@ public sealed class GetProductCategoryHandler(
             return validator.Failure<GetProductCategoryResponse>();
         }
 
-        return Result.Success(new GetProductCategoryResponse(productCategory!.Id, productCategory.Name, productCategory.ParentId));
+        return Result.Success(new GetProductCategoryResponse(productCategory!.Id, productCategory.Name,
+            productCategory.ParentId, productCategory.Icon, productCategory.Visible));
     }
 }

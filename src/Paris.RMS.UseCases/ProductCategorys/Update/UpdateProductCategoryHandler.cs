@@ -17,8 +17,9 @@ public sealed class UpdateProductCategoryHandler(
             return validator.Failure<UpdateProductCategoryResponse>();
         }
 
-        productCategory!.Update(request.Name, request.ParentId);
+        productCategory!.Update(request.Name, request.ParentId, request.Icon, request.Visible);
 
-        return Result.Success(new UpdateProductCategoryResponse(productCategory.Id, productCategory.Name, productCategory.ParentId));
+        return Result.Success(new UpdateProductCategoryResponse(productCategory.Id, productCategory.Name,
+            productCategory.ParentId, productCategory.Icon, productCategory.Visible));
     }
 }

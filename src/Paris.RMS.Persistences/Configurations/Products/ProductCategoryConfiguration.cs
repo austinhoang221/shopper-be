@@ -1,5 +1,4 @@
-﻿
-namespace Paris.RMS.Persistences.Configurations.Products;
+﻿namespace Paris.RMS.Persistences.Configurations.Products;
 
 internal sealed class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCategory>
 {
@@ -8,6 +7,14 @@ internal sealed class ProductCategoryConfiguration : IEntityTypeConfiguration<Pr
         builder.ConfigureEntityBase(false);
 
         builder.Property(pc => pc.Name)
+            .HasMaxLength(DefaultVarCharLength)
+            .IsRequired();
+
+        builder.Property(pc => pc.Icon)
+            .HasMaxLength(DefaultVarCharLength)
+            .IsRequired();
+
+        builder.Property(pc => pc.Visible)
             .HasMaxLength(DefaultVarCharLength)
             .IsRequired();
 

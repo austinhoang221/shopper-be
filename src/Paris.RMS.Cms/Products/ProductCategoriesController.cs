@@ -66,7 +66,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [ProducesResponseType<CreateProductCategoryResponse>(StatusCodes.Status201Created)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateProductCategoryRequest request, CancellationToken cancellationToken)
-        => await Result.Success(new CreateProductCategoryCommand(request.Name, request.ParentId))
+        => await Result.Success(new CreateProductCategoryCommand(request.Name, request.ParentId, request.Icon))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(CreatedAtAction, BadRequest, nameof(Get));
 
@@ -87,7 +87,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [ProducesResponseType<UpdateProductCategoryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Update(string id, [FromBody] UpdateProductCategoryRequest request, CancellationToken cancellationToken)
-        => await Result.Success(new UpdateProductCategoryCommand(id, request.Name, request.ParentId))
+        => await Result.Success(new UpdateProductCategoryCommand(id, request.Name, request.ParentId, request.Icon, request.Visible))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(OK, BadRequest);
 
