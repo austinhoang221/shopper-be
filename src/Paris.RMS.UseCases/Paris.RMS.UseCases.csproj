@@ -20,8 +20,6 @@
     <Folder Include="ProductTags\Get\" />
     <Folder Include="ProductTags\List\" />
     <Folder Include="ProductTags\Update\" />
-    <Folder Include="Systems\AllCodes\Delete\" />
-    <Folder Include="Systems\AllCodes\Get\" />
     <Folder Include="Systems\AllCodes\List\" />
     <Folder Include="Systems\AllCodes\Update\" />
     <Folder Include="Systems\CmdMenus\" />

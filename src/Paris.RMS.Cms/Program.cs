@@ -1,17 +1,35 @@
-﻿using Paris.RMS.Cms.Products;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
 
 // Add services to the container.
 var withApiVersioning = builder.Services.AddDefaultVersioning();
-builder.AddDefaultOpenApi(withApiVersioning);
+
+builder.AddDefaultAuthentication();
+
+builder.AddDefaultSwashbuckle(withApiVersioning);
+
+builder.Services
+    .RegisterServices()
+    .RegisterValidator()
+    .RegisterUseCasesLayer()
+    .RegisterPersistenceLayer(builder.Environment)
+    .AddCors()
+    ;
 
 var app = builder.Build();
 
-var paymentOrganizations = app.NewVersionedApi("Products");
-paymentOrganizations.MapProductApisV1();
-
 // Configure the HTTP request pipeline.
-app.UseDefaultOpenApi();
+
+app.UseDefaultSwashbuckle();
+
+app.UseDefaultAuthentication();
+
+app.MapControllers();
+
+app.UseCors(x => x.AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
+    .WithOrigins("http://localhost:3000"));
 
 app.Run();

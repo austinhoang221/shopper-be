@@ -1,10 +1,10 @@
-﻿using Paris.RMS.API.Users.ViewModels.V1;
-using Paris.RMS.ServiceDefaults.Abstractions;
+﻿using Microsoft.AspNetCore.Authorization;
+using Paris.RMS.Cms.Users.ViewModels.V1;
 using Paris.RMS.UseCases.Users.Get;
 using Paris.RMS.UseCases.Users.Login;
 using Paris.RMS.UseCases.Users.Register;
 
-namespace Paris.RMS.API.Users;
+namespace Paris.RMS.Cms.Users;
 
 [ApiVersion("1.0")]
 public class UsersController(IMediator mediator) : ApiController(mediator)
