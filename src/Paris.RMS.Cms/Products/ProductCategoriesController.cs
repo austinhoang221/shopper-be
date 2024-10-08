@@ -1,4 +1,5 @@
-﻿using Paris.RMS.Cms.Products.ViewModels.V1;
+﻿using Microsoft.AspNetCore.Authorization;
+using Paris.RMS.Cms.Products.ViewModels.V1;
 using Paris.RMS.UseCases.ProductCategorys.Create;
 using Paris.RMS.UseCases.ProductCategorys.Delete;
 using Paris.RMS.UseCases.ProductCategorys.Get;
@@ -7,6 +8,7 @@ using Paris.RMS.UseCases.ProductCategorys.Update;
 
 namespace Paris.RMS.Cms.Products;
 
+[AllowAnonymous]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/product-categories")]
 public class ProductCategoriesController(IMediator mediator) : ApiController(mediator)
