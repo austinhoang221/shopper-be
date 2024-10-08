@@ -4,6 +4,7 @@ using Paris.RMS.UseCases.Products.List;
 
 namespace Paris.RMS.API.Products;
 
+[AllowAnonymous]
 [ApiVersion("1.0")]
 public class ProductsController(IMediator mediator) : ApiController(mediator)
 {

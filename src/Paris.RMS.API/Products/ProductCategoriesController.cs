@@ -4,6 +4,7 @@ using Paris.RMS.UseCases.ProductCategorys.List;
 
 namespace Paris.RMS.API.Products;
 
+[AllowAnonymous]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/product-categories")]
 public class ProductCategoriesController(IMediator mediator) : ApiController(mediator)

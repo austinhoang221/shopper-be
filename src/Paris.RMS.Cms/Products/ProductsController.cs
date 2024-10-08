@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Paris.RMS.Cms.Products.ViewModels.V1;
+﻿using Paris.RMS.Cms.Products.ViewModels.V1;
 using Paris.RMS.UseCases.Products.Create;
 using Paris.RMS.UseCases.Products.Delete;
 using Paris.RMS.UseCases.Products.Get;
@@ -8,7 +7,6 @@ using Paris.RMS.UseCases.Products.Update;
 
 namespace Paris.RMS.Cms.Products;
 
-[AllowAnonymous]
 [ApiVersion("1.0")]
 public class ProductsController(IMediator mediator) : ApiController(mediator)
 {
