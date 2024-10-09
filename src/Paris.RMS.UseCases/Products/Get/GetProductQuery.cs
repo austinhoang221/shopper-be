@@ -1,8 +1,8 @@
 ﻿
 namespace Paris.RMS.UseCases.Products.Get;
 
-public sealed class GetProductQuery(string id)
+public sealed class GetProductQuery(Ulid id)
     : IQuery<GetProductResponse>
 {
-    public string Id { get; } = id;
+    public Ulid Id { get; } = id;
 }

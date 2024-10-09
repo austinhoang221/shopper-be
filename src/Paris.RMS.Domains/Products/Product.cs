@@ -4,7 +4,7 @@ public sealed class Product : EntityBase
 {
     private Product() { }
 
-    private Product(string categoryId, decimal costPrice,
+    private Product(Ulid categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
         int stock, string supplierId, string txDesc, string unit,
         decimal weight)
@@ -21,7 +21,7 @@ public sealed class Product : EntityBase
         Weight = weight;
     }
 
-    public string CategoryId { get; private set; } = string.Empty;
+    public Ulid CategoryId { get; private set; }
     public decimal CostPrice { get; private set; }
     public string Name { get; private set; } = string.Empty;
     public string ProductCd { get; private set; } = string.Empty;
@@ -32,12 +32,12 @@ public sealed class Product : EntityBase
     public string Unit { get; private set; } = string.Empty;
     public decimal Weight { get; private set; }
 
-    public static Product Create(string categoryId, decimal costPrice, int stock,
+    public static Product Create(Ulid categoryId, decimal costPrice, int stock,
         string name, string productCd, decimal sellingPrice, string supplierId, string txDesc, string unit,
         decimal weight)
         => new(categoryId, costPrice, name, productCd, sellingPrice, stock, supplierId, txDesc, unit, weight);
 
-    public void Update(string categoryId, decimal costPrice,
+    public void Update(Ulid categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
         int stock, string supplierId, string txDesc, string unit,
         decimal weight)

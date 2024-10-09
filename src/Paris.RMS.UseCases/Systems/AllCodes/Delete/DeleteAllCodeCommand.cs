@@ -1,7 +1,7 @@
 ﻿namespace Paris.RMS.UseCases.Systems.AllCodes.Delete;
 
-public sealed class DeleteAllCodeCommand(string id)
+public sealed class DeleteAllCodeCommand(Ulid id)
     : ICommand
 {
-    public string Id { get; } = id;
+    public Ulid Id { get; } = id;
 }

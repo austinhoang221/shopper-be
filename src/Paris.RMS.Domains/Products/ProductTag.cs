@@ -4,19 +4,19 @@ public sealed class ProductTag : EntityBase
 {
     private ProductTag() { }
 
-    private ProductTag(string productId, string tagName)
+    private ProductTag(Ulid productId, string tagName)
     {
         ProductId = productId;
         TagName = tagName;
     }
 
-    public string ProductId { get; private set; } = string.Empty;
+    public Ulid ProductId { get; private set; }
     public string TagName { get; private set; } = string.Empty;
 
-    public static ProductTag Create(string productId, string tagName)
+    public static ProductTag Create(Ulid productId, string tagName)
         => new(productId, tagName);
 
-    public void Update(string productId, string tagName)
+    public void Update(Ulid productId, string tagName)
     {
         ProductId = productId;
         TagName = tagName;

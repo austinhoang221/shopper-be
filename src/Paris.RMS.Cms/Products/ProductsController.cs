@@ -44,7 +44,7 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     [HttpGet("{id}")]
     [ProducesResponseType<GetProductResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(Ulid id, CancellationToken cancellationToken)
         => await Result.Success(new GetProductQuery(id))
         .CallHandler(query => Mediator.Send(query, cancellationToken))
         .Match(OK, NotFound);
@@ -85,7 +85,7 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     [HttpPut("{id}")]
     [ProducesResponseType<UpdateProductResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Update(string id, [FromBody] UpdateProductRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(Ulid id, [FromBody] UpdateProductRequest request, CancellationToken cancellationToken)
         => await Result.Success(request.ToCommand(id))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(OK, BadRequest);
@@ -105,7 +105,7 @@ public class ProductsController(IMediator mediator) : ApiController(mediator)
     [HttpDelete("{id}")]
     [ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete(Ulid id, CancellationToken cancellationToken)
         => await Result.Success(new DeleteProductCommand(id))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(NoContent, BadRequest);

@@ -2,12 +2,12 @@
 
 namespace Paris.RMS.API.Products.ViewModels.V1;
 
-public sealed class UpdateProductRequest(string categoryId, decimal costPrice,
+public sealed class UpdateProductRequest(Ulid categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
         int stock, string supplierId, string txDesc, string unit,
         decimal weight)
 {
-    public string CategoryId { get; } = categoryId;
+    public Ulid CategoryId { get; } = categoryId;
     public decimal CostPrice { get; } = costPrice;
     public string Name { get; } = name;
     public string ProductCd { get; } = productCd;
@@ -19,7 +19,7 @@ public sealed class UpdateProductRequest(string categoryId, decimal costPrice,
     public decimal Weight { get; } = weight;
 
 
-    public UpdateProductCommand ToCommand(string id)
+    public UpdateProductCommand ToCommand(Ulid id)
     => new(id, CategoryId, CostPrice, Name, ProductCd,
         SellingPrice, Stock, SupplierId, TxDesc, Unit, Weight);
 }

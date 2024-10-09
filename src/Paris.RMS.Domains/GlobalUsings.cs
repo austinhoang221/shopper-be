@@ -1,4 +1,5 @@
-﻿global using System.Reflection;
+﻿global using System.ComponentModel.DataAnnotations;
+global using System.Reflection;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.Extensions.Logging;
 global using Paris.RMS.Contracts.BuildingBlocks.Databases;

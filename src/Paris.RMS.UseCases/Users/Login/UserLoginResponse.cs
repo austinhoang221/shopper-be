@@ -1,3 +1,3 @@
 ﻿namespace Paris.RMS.UseCases.Users.Login;
 
-public sealed record UserLoginResponse(string Id, string AccessToken) : IResponse;
+public sealed record UserLoginResponse(Ulid Id, string AccessToken) : IResponse;

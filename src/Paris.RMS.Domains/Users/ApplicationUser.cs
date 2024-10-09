@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Paris.RMS.Domains.Users;
 
-namespace Paris.RMS.Domains.Users;
-
-public class ApplicationUser : IdentityUser
+public class ApplicationUser : IdentityUser<Ulid>
 {
     private ApplicationUser(string username, string name, string lastName, string email, string phoneNumber)
     {
-        Id = Ulid.NewUlid().ToString();
+        Id = Ulid.NewUlid();
         UserName = username;
         Name = name;
         LastName = lastName;

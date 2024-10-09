@@ -1,12 +1,12 @@
 ﻿namespace Paris.RMS.UseCases.Products.Create;
 
-public sealed class CreateProductCommand(string categoryId, decimal costPrice,
+public sealed class CreateProductCommand(Ulid categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
         int stock, string supplierId, string txDesc, string unit,
         decimal weight)
     : ICommand<CreateProductResponse>
 {
-    public string CategoryId { get; } = categoryId;
+    public Ulid CategoryId { get; } = categoryId;
     public decimal CostPrice { get; } = costPrice;
     public string Name { get; } = name;
     public string ProductCd { get; } = productCd;

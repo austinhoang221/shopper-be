@@ -5,13 +5,13 @@ public interface IDbContext
     DbSet<TEntity> Set<TEntity>()
         where TEntity : EntityBase;
 
-    Task<TEntity?> FindAsync<TEntity>(string id)
+    Task<TEntity?> FindAsync<TEntity>(Ulid id)
         where TEntity : EntityBase;
 
     Task<IReadOnlyCollection<TEntity>> List<TEntity>()
         where TEntity : EntityBase;
 
-    Task<bool> IsExist<TEntity>(string id)
+    Task<bool> IsExist<TEntity>(Ulid id)
         where TEntity : EntityBase;
 
     void Insert<TEntity>(TEntity entity)
@@ -26,7 +26,7 @@ public interface IDbContext
     void DeleteRange<TEntity>(IReadOnlyCollection<TEntity> entities)
         where TEntity : EntityBase;
 
-    Task DeleteAsync<TEntity>(string id)
+    Task DeleteAsync<TEntity>(Ulid id)
         where TEntity : EntityBase;
 
     Task SaveChangesAsync(CancellationToken cancellationToken);

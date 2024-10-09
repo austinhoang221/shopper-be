@@ -9,7 +9,7 @@ internal sealed class JwtTokenProvider(IOptionsMonitor<AuthenticationOptions> op
     {
         List<Claim> claims =
         [
-            new(ClaimTypes.NameIdentifier, user.Id),
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(JwtRegisteredClaimNames.Name, user.UserName!),
             new(JwtRegisteredClaimNames.Email, user.Email!),
         ];

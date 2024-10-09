@@ -1,7 +1,4 @@
-﻿using Paris.RMS.Domains.Systems;
-using Paris.RMS.Domains.Systems.Repositories;
-
-namespace Paris.RMS.UseCases.Systems.AllCodes.Delete;
+﻿namespace Paris.RMS.UseCases.Systems.AllCodes.Delete;
 
 public sealed class DeleteAllCodeHandler(
     IAllCodeRepository allCodeRepository,

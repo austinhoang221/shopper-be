@@ -2,5 +2,5 @@
 
 public interface IProductTagRepository : IRepositoryBase<ProductTag>
 {
-    Task DeleteByProductId(string productId);
+    Task DeleteByProductId(Ulid productId);
 }

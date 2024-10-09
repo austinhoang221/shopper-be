@@ -45,7 +45,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [HttpGet("{id}")]
     [ProducesResponseType<GetProductCategoryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(Ulid id, CancellationToken cancellationToken)
         => await Result.Success(new GetProductCategoryQuery(id))
         .CallHandler(query => Mediator.Send(query, cancellationToken))
         .Match(OK, NotFound);
@@ -86,7 +86,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [HttpPut("{id}")]
     [ProducesResponseType<UpdateProductCategoryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Update(string id, [FromBody] UpdateProductCategoryRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(Ulid id, [FromBody] UpdateProductCategoryRequest request, CancellationToken cancellationToken)
         => await Result.Success(new UpdateProductCategoryCommand(id, request.Name, request.ParentId, request.Icon, request.Visible))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(OK, BadRequest);
@@ -106,7 +106,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [HttpDelete("{id}")]
     [ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete(Ulid id, CancellationToken cancellationToken)
         => await Result.Success(new DeleteProductCategoryCommand(id))
         .CallHandler(command => Mediator.Send(command, cancellationToken))
         .Match(NoContent, BadRequest);

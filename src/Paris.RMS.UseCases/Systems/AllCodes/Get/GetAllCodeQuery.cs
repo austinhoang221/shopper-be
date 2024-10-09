@@ -1,7 +1,7 @@
 ﻿namespace Paris.RMS.UseCases.Systems.AllCodes.Get;
 
-public sealed class GetAllCodeQuery(string id)
+public sealed class GetAllCodeQuery(Ulid id)
     : IQuery<GetAllCodeResponse>
 {
-    public string Id { get; } = id;
+    public Ulid Id { get; } = id;
 }

@@ -2,7 +2,7 @@
 
 public abstract class EntityBase : HasDomainEventsBase, IEntityBase
 {
-    public string Id { get; set; } = Ulid.NewUlid().ToString();
+    public Ulid Id { get; set; } = Ulid.NewUlid();
 
     public DateTimeOffset CreationTime { get; set; }
 

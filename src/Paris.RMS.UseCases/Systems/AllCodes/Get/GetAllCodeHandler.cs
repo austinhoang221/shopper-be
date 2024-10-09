@@ -1,7 +1,4 @@
-﻿using Paris.RMS.Domains.Systems;
-using Paris.RMS.Domains.Systems.Repositories;
-
-namespace Paris.RMS.UseCases.Systems.AllCodes.Get;
+﻿namespace Paris.RMS.UseCases.Systems.AllCodes.Get;
 
 public sealed class GetAllCodeHandler(IAllCodeRepository allCodeRepository,
     IValidator validator)

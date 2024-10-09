@@ -1,14 +1,12 @@
-﻿using Paris.RMS.Contracts.Utilities;
+﻿namespace Paris.RMS.UseCases.ProductCategorys.List;
 
-namespace Paris.RMS.UseCases.ProductCategorys.List;
-
-public sealed class ListProductCategoryResponse(string id, string name, string? parentId,
+public sealed class ListProductCategoryResponse(Ulid id, string name, Ulid? parentId,
     string icon, string visible)
     : IResponse, INode<ListProductCategoryResponse>
 {
-    public string Id { get; } = id;
+    public Ulid Id { get; } = id;
     public string Name { get; } = name;
-    public string? ParentId { get; } = parentId;
+    public Ulid? ParentId { get; } = parentId;
     public string Icon { get; } = icon;
     public string Visible { get; } = visible;
     public IEnumerable<ListProductCategoryResponse> Children { get; set; } = [];

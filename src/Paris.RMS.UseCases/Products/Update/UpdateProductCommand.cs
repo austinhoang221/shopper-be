@@ -1,13 +1,13 @@
 ﻿namespace Paris.RMS.UseCases.Products.Update;
 
-public sealed class UpdateProductCommand(string id, string categoryId, decimal costPrice,
+public sealed class UpdateProductCommand(Ulid id, Ulid categoryId, decimal costPrice,
         string name, string productCd, decimal sellingPrice,
         int stock, string supplierId, string txDesc, string unit,
         decimal weight)
     : ICommand<UpdateProductResponse>
 {
-    public string Id { get; } = id;
-    public string CategoryId { get; } = categoryId;
+    public Ulid Id { get; } = id;
+    public Ulid CategoryId { get; } = categoryId;
     public decimal CostPrice { get; } = costPrice;
     public string Name { get; } = name;
     public string ProductCd { get; } = productCd;

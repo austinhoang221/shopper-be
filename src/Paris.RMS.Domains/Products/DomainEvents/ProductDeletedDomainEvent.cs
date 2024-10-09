@@ -1,6 +1,6 @@
 ﻿namespace Paris.RMS.Domains.Products.DomainEvents;
 
-internal sealed class ProductDeletedDomainEvent(string productId) : DomainEvent
+internal sealed class ProductDeletedDomainEvent(Ulid productId) : DomainEvent
 {
-    public string ProductId { get; } = productId;
+    public Ulid ProductId { get; } = productId;
 }

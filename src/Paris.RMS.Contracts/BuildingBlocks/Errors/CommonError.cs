@@ -8,6 +8,12 @@ public sealed partial class Error
         return New($"{typeof(TEntity).Name}.{nameof(NotFound)}", $"{typeof(TEntity).Name} with id '{id}' was not found.");
     }
 
+    public static Error NotFound<TEntity>(Ulid id)
+        where TEntity : EntityBase
+    {
+        return New($"{typeof(TEntity).Name}.{nameof(NotFound)}", $"{typeof(TEntity).Name} with id '{id}' was not found.");
+    }
+
     public static Error NotFound(string id, string entityName)
     {
         return New($"{entityName}.{nameof(NotFound)}", $"{entityName} with id '{id}' was not found.");

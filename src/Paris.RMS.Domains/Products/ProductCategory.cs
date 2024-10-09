@@ -6,7 +6,7 @@ public sealed class ProductCategory : EntityBase
 {
     private ProductCategory() { }
 
-    public ProductCategory(string name, string? parentId, string icon)
+    public ProductCategory(string name, Ulid? parentId, string icon)
     {
         Name = name;
         ParentId = parentId;
@@ -15,14 +15,14 @@ public sealed class ProductCategory : EntityBase
     }
 
     public string Name { get; private set; } = string.Empty;
-    public string? ParentId { get; private set; }
+    public Ulid? ParentId { get; private set; }
     public string Icon { get; set; } = string.Empty;
     public string Visible { get; set; } = ProductCategoryConstants.VisibleDefault;
 
-    public static ProductCategory Create(string name, string? parentId, string icon)
+    public static ProductCategory Create(string name, Ulid? parentId, string icon)
         => new(name, parentId, icon);
 
-    public void Update(string name, string? parentId, string icon, string visible)
+    public void Update(string name, Ulid? parentId, string icon, string visible)
     {
         Name = name;
         ParentId = parentId;

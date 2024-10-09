@@ -2,5 +2,5 @@
 
 public interface IProductRepository : IRepositoryBase<Product>
 {
-    Task DeleteByProductCategoryIdAsync(string productCategoryId);
+    Task DeleteByProductCategoryIdAsync(Ulid productCategoryId);
 }

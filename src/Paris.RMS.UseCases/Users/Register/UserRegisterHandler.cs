@@ -30,7 +30,7 @@ public sealed class UserRegisterHandler(
         if (!result.Succeeded)
         {
             logger.LogError("UserRegisterCommand failed: {Errors}", result.Errors);
-            var error = result.Errors.Select(e => Error.ApplicationFailure(e.Code, e.Description)).FirstOrDefault();
+            var error = result.Errors.Select(e => ApplicationFailure(e.Code, e.Description)).FirstOrDefault();
             return Result.Failure<UserRegisterResponse>(error!);
         }
         string token = tokenProvider.GenerateJwt(user);

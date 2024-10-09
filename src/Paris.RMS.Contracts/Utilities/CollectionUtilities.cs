@@ -32,7 +32,8 @@ public static class CollectionUtilities
         Func<TInput, TOutput> createInstance,
         Func<TInput, TMapping> mappingSelector,
         TMapping? rootValue = default)
-        where TOutput : class, INode<TOutput> where TInput : class
+        where TOutput : class, INode<TOutput>
+        where TInput : class
     {
         foreach (var c in collection.Where(c => rootValue?.Equals(parentSelector(c)) ?? false).OrderBy(q => orderSelector(q)))
         {

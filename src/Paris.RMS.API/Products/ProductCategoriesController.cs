@@ -43,7 +43,7 @@ public class ProductCategoriesController(IMediator mediator) : ApiController(med
     [HttpGet("{id}")]
     [ProducesResponseType<GetProductCategoryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(Ulid id, CancellationToken cancellationToken)
         => await Result.Success(new GetProductCategoryQuery(id))
         .CallHandler(query => Mediator.Send(query, cancellationToken))
         .Match(OK, NotFound);

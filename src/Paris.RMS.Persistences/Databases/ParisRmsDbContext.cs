@@ -2,12 +2,20 @@
 
 public sealed class ParisRmsDbContext(
     DbContextOptions<ParisRmsDbContext> options)
-    : IdentityDbContext<ApplicationUser>(options), IDbContext
+    : IdentityDbContext<ApplicationUser, IdentityRole<Ulid>, Ulid>(options), IDbContext
 {
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+        configurationBuilder
+            .Properties<Ulid>()
+            .HaveConversion<UlidToStringConverter>();
     }
 
     public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
@@ -26,7 +34,7 @@ public sealed class ParisRmsDbContext(
         where TEntity : EntityBase
         => base.Set<TEntity>();
 
-    public async Task<TEntity?> FindAsync<TEntity>(string id)
+    public async Task<TEntity?> FindAsync<TEntity>(Ulid id)
         where TEntity : EntityBase
         => await Set<TEntity>().Where(e => e.Id == id).SingleOrDefaultAsync();
 
@@ -34,7 +42,7 @@ public sealed class ParisRmsDbContext(
         where TEntity : EntityBase
         => await Set<TEntity>().ToListAsync();
 
-    public async Task<bool> IsExist<TEntity>(string id)
+    public async Task<bool> IsExist<TEntity>(Ulid id)
         where TEntity : EntityBase
         => await Set<TEntity>().AnyAsync(x => x.Id == id);
 
@@ -52,7 +60,7 @@ public sealed class ParisRmsDbContext(
     public void DeleteRange<TEntity>(IReadOnlyCollection<TEntity> entities) where TEntity : EntityBase
         => Set<TEntity>().RemoveRange(entities);
 
-    public async Task DeleteAsync<TEntity>(string id)
+    public async Task DeleteAsync<TEntity>(Ulid id)
         where TEntity : EntityBase
         => await Set<TEntity>()
         .Where(e => e.Id == id)
