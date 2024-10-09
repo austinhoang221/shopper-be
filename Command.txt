@@ -5,9 +5,6 @@
 
 - Tạo migrations 
 	Add-Migration -Name Inital-Creation -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
-    Add-Migration -Name Inital-System-Tbl -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
-    Add-Migration -Name Inital-Product-PC-PT-Tbl -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
-    Add-Migration -Name Inital-Icon-And-Visible-Col -OutputDir Databases\Migrations -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API
 
 - Xóa migrations
 	Remove-Migration -Context ParisRmsDbContext -Project src\Paris.RMS.Persistences -StartupProject src\Paris.RMS.API

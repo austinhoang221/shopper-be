@@ -62,7 +62,7 @@ internal static class DatabaseExtensions
             services.AddMigration<ParisRmsDbContext, UsersSeed>();
         }
 
-        services.AddIdentity<ApplicationUser, IdentityRole>()
+        services.AddIdentity<ApplicationUser, IdentityRole<Ulid>>()
             .AddEntityFrameworkStores<ParisRmsDbContext>()
             .AddDefaultTokenProviders();
 

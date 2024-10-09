@@ -1,4 +1,6 @@
-﻿namespace Paris.RMS.Persistences.Configurations;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Paris.RMS.Persistences.Configurations;
 
 public static class ConfigurationExtensions
 {
@@ -43,6 +45,10 @@ public static class ConfigurationExtensions
     public static EntityTypeBuilder<TEntity> ConfigureEntityBase<TEntity>(this EntityTypeBuilder<TEntity> builder, bool useUpdatedOnAsConcurrencyToken = true)
         where TEntity : class, IEntityBase
     {
+        builder
+            .Property(e => e.Id)
+            .HasConversion<UlidToStringConverter>();
+
         builder.Property(o => o.Id)
             .HasColumnType(VarChar(DefaultIdLength));
 

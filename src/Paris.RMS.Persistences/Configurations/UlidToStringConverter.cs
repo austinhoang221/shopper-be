@@ -8,4 +8,8 @@ public class UlidToStringConverter(ConverterMappingHints mappingHints) : ValueCo
             mappingHints: defaultHints.With(mappingHints))
 {
     private static readonly ConverterMappingHints defaultHints = new(size: 26);
+
+    public UlidToStringConverter() : this(null!)
+    {
+    }
 }
