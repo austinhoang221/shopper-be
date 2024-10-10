@@ -1,3 +1,6 @@
 ﻿namespace Paris.RMS.Contracts.Exceptions;
 
-public sealed class BadRequestException(string message) : Exception(message);
+public class BadRequestException(string message, Error[]? errors = null) : Exception(message)
+{
+    public Error[] Errors { get; } = errors ?? [];
+}

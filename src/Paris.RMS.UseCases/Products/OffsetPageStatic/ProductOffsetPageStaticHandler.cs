@@ -1,6 +1,4 @@
-﻿using static Paris.RMS.Contracts.Utilities.PageUtilities;
-
-namespace Paris.RMS.UseCases.Products.OffsetPageStatic;
+﻿namespace Paris.RMS.UseCases.Products.OffsetPageStatic;
 
 public class ProductOffsetPageStaticHandler(IProductRepository productRepository)
     : IOffsetPageQueryHandler<ProductOffsetPageStaticQuery, ProductOffsetPageStaticResponse,

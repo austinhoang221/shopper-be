@@ -1,5 +1,4 @@
-﻿using Paris.RMS.ServiceDefaults.Abstractions;
-using Paris.RMS.UseCases.ProductCategorys.Get;
+﻿using Paris.RMS.UseCases.ProductCategorys.Get;
 using Paris.RMS.UseCases.ProductCategorys.List;
 
 namespace Paris.RMS.API.Products;

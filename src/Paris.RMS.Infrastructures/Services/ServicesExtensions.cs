@@ -11,6 +11,8 @@ public static class ServicesExtensions
         // JWT Token
         services.ConfigureOptions<AuthenticationOptionsSetup>();
         services.ConfigureOptions<BearerAuthenticationOptionsSetup>();
+
+        // Simple Storage Service
         return services;
     }
 }

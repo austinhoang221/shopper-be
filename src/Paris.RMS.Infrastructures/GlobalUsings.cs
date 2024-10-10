@@ -13,6 +13,7 @@ global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Abstractions;
 global using Paris.RMS.Contracts.BuildingBlocks.EventBus.Events;
 global using Paris.RMS.Domains.Users;
 global using Paris.RMS.Infrastructures.Services.JwtTokens;
+global using Paris.RMS.UseCases.UploadServices;
 global using Paris.RMS.UseCases.UserServices;
 global using Polly;
 global using Polly.Retry;
@@ -20,3 +21,4 @@ global using RabbitMQ.Client;
 global using RabbitMQ.Client.Events;
 global using RabbitMQ.Client.Exceptions;
 global using static Paris.RMS.Contracts.Utilities.StringUtilities;
+

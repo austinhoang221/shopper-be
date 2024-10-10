@@ -1,6 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Filters;
-
-namespace Paris.RMS.ServiceDefaults;
+﻿namespace Paris.RMS.ServiceDefaults;
 
 public static class SwashbuckleExtensions
 {
@@ -16,9 +14,13 @@ public static class SwashbuckleExtensions
 
         if (app.Environment.IsDevelopment())
         {
-
+            app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI();
+        }
+        else
+        {
+            app.UseExceptionHandler();
         }
 
         return app;
@@ -67,6 +69,9 @@ public static class SwashbuckleExtensions
             options.LowercaseUrls = true;
             options.LowercaseQueryStrings = false;
         });
+
+        builder.Services.AddExceptionHandler<ExceptionHandler>();
+        builder.Services.AddProblemDetails();
 
         return builder;
     }

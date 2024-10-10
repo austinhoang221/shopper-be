@@ -47,7 +47,7 @@ public sealed class OffsetPageResponse<TValue> : PageResponse<TValue>
 
         if (CurrentPage > TotalPages && TotalItemsCount > 0)
         {
-            throw new BadRequestException($"Selected page '{CurrentPage}' is greater than total number of pages '{TotalPages}'");
+            throw new OffsetPageException(CurrentPage, TotalPages);
         }
 
         ItemsFrom = Math.Min(pageSize * (pageNumber - 1) + 1, totalCount);

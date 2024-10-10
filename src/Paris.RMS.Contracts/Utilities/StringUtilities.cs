@@ -129,4 +129,19 @@ public static class StringUtilities
 
         return char.ToLower(pascalCase[0]) + pascalCase[1..];
     }
+
+    /// <summary>
+    /// Get extension of file
+    /// </summary>
+    /// <param name="fileName">Name of file</param>
+    /// <returns>Extension of file</returns>
+    public static string GetExtensionFile(this string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName)) return string.Empty;
+
+        string ext = Path.GetExtension(fileName);
+        if (string.IsNullOrEmpty(ext)) return string.Empty;
+
+        return ext.Trim('.');
+    }
 }

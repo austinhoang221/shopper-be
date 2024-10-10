@@ -21,7 +21,7 @@ public sealed class CursorPageResponse<TValue> : PageResponse<TValue>
 
         if (notLastPage && invalidCursor)
         {
-            throw new BadRequestException($"Selected cursor '{currentCursor}' is greater than next cursor '{nextCursor}'");
+            throw new CursorPageException(currentCursor, nextCursor);
         }
 
         CurrentCursor = currentCursor;
